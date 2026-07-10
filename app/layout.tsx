@@ -20,7 +20,7 @@ const instrumentSerif = Instrument_Serif({
 export const metadata: Metadata = {
   title: "Granvy — AI Automation Solutions for Small Businesses",
   description:
-    "Granvy is the front-desk operating platform for owner-operated service businesses. Start with AI voice reception, then run booking, CRM, invoicing, and more from one system.",
+    "Granvy is the complete front-desk operating system for owner-operated service businesses — booking, deposits, forms, records, reminders, payments, and every call, text, and click, all in one system.",
   metadataBase: new URL("https://granvy.com"),
   icons: {
     icon: "/favicon.svg",

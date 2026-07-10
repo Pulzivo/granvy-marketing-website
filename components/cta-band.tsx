@@ -32,9 +32,6 @@ export function CtaBand() {
               >
                 {ctaBand.primaryCta}
               </Button>
-              <Button href={`tel:${brand.contactPhone.replace(/[^\d+]/g, "")}`} variant="secondary">
-                {ctaBand.secondaryCta}
-              </Button>
             </div>
           </Reveal>
         </div>

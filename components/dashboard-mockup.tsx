@@ -1,5 +1,21 @@
-import { Phone, MessageSquare, CheckCircle2 } from "lucide-react";
+import {
+  Phone,
+  MessageSquare,
+  CheckCircle2,
+  ShieldCheck,
+  FileText,
+  CreditCard,
+  type LucideIcon,
+} from "lucide-react";
 import { heroDashboard } from "@/lib/content";
+
+const activityIcons: Record<string, LucideIcon> = {
+  call: Phone,
+  deposit: ShieldCheck,
+  form: FileText,
+  followup: MessageSquare,
+  payment: CreditCard,
+};
 
 export function DashboardMockup() {
   return (
@@ -30,21 +46,24 @@ export function DashboardMockup() {
       </div>
 
       <div className="space-y-1 border-t border-white/10 px-3 py-3 md:px-5 md:py-4">
-        {heroDashboard.activity.map((item, i) => (
-          <div
-            key={i}
-            className="flex items-center gap-3 rounded-lg px-2 py-2.5 text-sm hover:bg-white/[0.03]"
-          >
-            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-green/10 text-green">
-              {item.type === "call" ? <Phone size={14} /> : <MessageSquare size={14} />}
-            </span>
-            <span className="min-w-0 flex-1 truncate text-white/80">{item.text}</span>
-            <span className="flex shrink-0 items-center gap-1 text-xs font-medium text-green">
-              <CheckCircle2 size={12} />
-              <span className="hidden sm:inline">{item.result}</span>
-            </span>
-          </div>
-        ))}
+        {heroDashboard.activity.map((item, i) => {
+          const Icon = activityIcons[item.type] ?? MessageSquare;
+          return (
+            <div
+              key={i}
+              className="flex items-center gap-3 rounded-lg px-2 py-2.5 text-sm hover:bg-white/[0.03]"
+            >
+              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-green/10 text-green">
+                <Icon size={14} />
+              </span>
+              <span className="min-w-0 flex-1 truncate text-white/80">{item.text}</span>
+              <span className="flex shrink-0 items-center gap-1 text-xs font-medium text-green">
+                <CheckCircle2 size={12} />
+                <span className="hidden sm:inline">{item.result}</span>
+              </span>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
