@@ -1,7 +1,9 @@
-import { CheckCircle2, Phone } from "lucide-react";
+import { CheckCircle2, Phone, ShieldCheck, FileText } from "lucide-react";
 import { Container } from "./ui/container";
 import { Reveal } from "./ui/reveal";
 import { voiceModule } from "@/lib/content";
+
+const vignetteIcons = [ShieldCheck, FileText];
 
 export function VoiceModule() {
   return (
@@ -38,7 +40,26 @@ export function VoiceModule() {
           </div>
 
           <Reveal delay={0.1} y={30}>
-            <TranscriptCard />
+            <div className="space-y-4">
+              <TranscriptCard />
+              <div className="grid grid-cols-2 gap-4">
+                {voiceModule.vignettes.map((vignette, i) => {
+                  const Icon = vignetteIcons[i % vignetteIcons.length];
+                  return (
+                    <div
+                      key={vignette.label}
+                      className="rounded-2xl border border-white/10 bg-ink/60 p-4 backdrop-blur-xl"
+                    >
+                      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-green/10 text-green">
+                        <Icon size={14} />
+                      </span>
+                      <p className="mt-3 text-sm font-medium text-white">{vignette.label}</p>
+                      <p className="mt-1 text-xs leading-relaxed text-muted">{vignette.detail}</p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           </Reveal>
         </div>
       </Container>

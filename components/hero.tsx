@@ -35,10 +35,7 @@ export function Hero() {
             transition={{ duration: 0.5 }}
             className="liquid-glass mb-6 flex items-center gap-2 rounded-lg px-3 py-2"
           >
-            <span className="rounded-md bg-white px-2 py-0.5 text-xs font-medium text-black">
-              {hero.pillBadge}
-            </span>
-            <span className="text-sm font-medium text-muted">{hero.pillText}</span>
+            <span className="text-sm font-medium text-muted">{hero.eyebrow}</span>
           </motion.div>
 
           <motion.h1
@@ -73,9 +70,6 @@ export function Hero() {
           >
             <Button href="#book-demo" variant="ghost">
               {hero.primaryCta}
-            </Button>
-            <Button href={hero.secondaryCtaHref} variant="secondary">
-              {hero.secondaryCta}
             </Button>
           </motion.div>
         </motion.div>

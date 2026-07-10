@@ -1,16 +1,17 @@
 // All site copy lives here. Everything below is strong placeholder copy —
 // swap in real numbers, testimonials, and contact details before launch.
-// Positioning: Granvy is a front-desk operating platform for owner-operated
-// service businesses. AI Voice Reception is module one / the entry point,
-// not the whole product. Tone: confident, operator-to-operator, no hype.
+// Positioning: Granvy is the front-desk operating system for owner-operated
+// service businesses. Voice is one door into the system, not the whole
+// product — booking, deposits/payments, records/forms, and follow-ups all
+// carry equal weight. Tone: confident, operator-to-operator, no hype.
 
 export const brand = {
   name: "Granvy",
   tagline: "Automate tasks. Save time. Grow smarter.",
   legalName: "Granvy",
   domain: "granvy.com",
-  contactEmail: "hello@granvy.com", // placeholder
-  contactPhone: "+1 (416) 555-0123", // placeholder
+  contactEmail: "reza@granvy.com",
+  contactPhone: "+1 (647) 526-7076",
 };
 
 export const nav = {
@@ -23,56 +24,64 @@ export const nav = {
 };
 
 export const hero = {
-  pillBadge: "New",
-  pillText: "AI Voice Reception is live",
+  eyebrow: "The complete front-desk operating system",
   headlineLine1: "Your Front Desk.",
   headlineAccent: "Automatic.",
   headlinePrefix: "Finally",
   subtitle:
-    "Granvy answers every call, books the job, and keeps your records straight,",
-  subtitleLine2: "so nothing falls through the cracks while you're busy running the business.",
+    "Granvy runs the whole thing — bookings, deposits, forms, reminders, follow-ups, payments,",
+  subtitleLine2:
+    "and every call, text, and click a customer sends your way — so the business runs itself while you do the work.",
   primaryCta: "Book a demo",
-  secondaryCta: "See how it works",
-  secondaryCtaHref: "#voice",
 };
 
 export const heroDashboard = {
   title: "Front Desk — Live",
   status: "All systems answering",
   stats: [
-    { label: "Calls answered", value: "312", sub: "this week" },
     { label: "Bookings captured", value: "128", sub: "this week" },
-    { label: "Avg. response time", value: "1.8s", sub: "24/7" },
+    { label: "No-shows prevented", value: "24", sub: "this week" },
+    { label: "Payments collected", value: "$8,240", sub: "this week" },
   ],
   activity: [
     {
       type: "call",
-      text: "Incoming call — (555) 013-2201",
-      result: "Booked: Consultation, Tue 2:00 PM",
+      text: "Incoming call — booked",
+      result: "Consultation, Tue 2:00 PM",
     },
     {
-      type: "message",
-      text: "Follow-up sent to Dana M.",
+      type: "deposit",
+      text: "Deposit collected",
+      result: "$50 hold",
+    },
+    {
+      type: "form",
+      text: "Intake form completed",
+      result: "Before appointment",
+    },
+    {
+      type: "followup",
+      text: "Aftercare follow-up sent",
+      result: "To Dana M.",
+    },
+    {
+      type: "payment",
+      text: "Payment received",
       result: "Invoice paid",
-    },
-    {
-      type: "call",
-      text: "Incoming call — (555) 048-9910",
-      result: "Booked: Quote visit, Thu 10:30 AM",
     },
   ],
 };
 
 export const voiceModule = {
-  eyebrow: "Module 01 — Start Here",
-  heading: "Your Front Desk Starts With a Voice",
-  body: "Most Granvy accounts start with one thing: a phone number that never goes to voicemail. Granvy answers every call, understands what the customer needs, and books it straight into your calendar — day or night, whether you're on a ladder, in a treatment room, or closed for the weekend.",
+  eyebrow: "One System, Not Eleven Tools",
+  heading: "Everything Your Front Desk Does — Running Itself",
+  body: "The front desk isn't just the phone. It's every booking, every deposit, every form, every reminder, every follow-up — the whole nerve center of your business. Granvy runs all of it, in one system, on autopilot, so nothing slips while you're doing the actual work.",
   features: [
-    "Answers on the first ring, every time",
-    "Understands your services, hours, and pricing",
-    "Books directly into your calendar",
-    "Sends a confirmation automatically",
-    "Escalates real emergencies straight to you",
+    "Every call, text, and booking answered automatically",
+    "Deposits and payments collected without a follow-up call",
+    "Forms and consent completed before the appointment",
+    "Reminders and follow-ups sent without anyone lifting a finger",
+    "Real emergencies escalated straight to you",
   ],
   transcript: [
     { from: "caller", text: "Hi, do you have anything open this Thursday afternoon?" },
@@ -80,66 +89,152 @@ export const voiceModule = {
     { from: "caller", text: "4:00 works great." },
     { from: "granvy", text: "Booked for Thursday at 4:00 PM. Confirmation sent." },
   ],
+  vignettes: [
+    { label: "Deposit collected", detail: "$50 hold on Thursday's booking" },
+    { label: "Intake form completed", detail: "Submitted before the appointment" },
+  ],
 };
 
 export type PlatformModule = {
   name: string;
   description: string;
-  entry?: boolean;
+};
+
+export type PlatformGroup = {
+  name: string;
+  modules: PlatformModule[];
 };
 
 export const platform = {
   eyebrow: "The Full Platform",
   heading: "Everything Your Front Desk Touches, In One System",
   subheading:
-    "Voice reception is where most businesses start. From there, turn on the rest of your front desk whenever you're ready — no new software, no new login.",
-  modules: [
+    "One system for your entire front desk — organized into the layers that actually run your business. Every part talks to every other part. No new software, no new login.",
+  groups: [
     {
-      name: "AI Voice Reception",
-      description: "Answers every call and books the job.",
-      entry: true,
+      name: "Front doors",
+      modules: [
+        {
+          name: "AI Voice Reception",
+          description: "Answers every call, books the job, escalates real emergencies to you.",
+        },
+        {
+          name: "Website Chat",
+          description: "Answers questions and books visitors right on your site.",
+        },
+        {
+          name: "24/7 Online Booking",
+          description: "A booking page that takes appointments day or night.",
+        },
+      ],
     },
     {
-      name: "Appointment Scheduling",
-      description: "A calendar that fills itself and never double-books.",
+      name: "Booking & calendar",
+      modules: [
+        {
+          name: "Smart Scheduling",
+          description: "A calendar that fills itself and never double-books.",
+        },
+        {
+          name: "Smart Waitlist",
+          description: "Fills a cancellation before you even notice it.",
+        },
+        {
+          name: "Staff Scheduling",
+          description: "Know who's where and who's free.",
+        },
+        {
+          name: "Automatic Reminders",
+          description: "Cut no-shows before they happen.",
+        },
+      ],
     },
     {
-      name: "CRM & Customer Records",
-      description: "Every customer, every visit, every note, in one place.",
+      name: "Getting paid",
+      modules: [
+        {
+          name: "Deposits & No-Show Protection",
+          description: "Hold the slot with a deposit; stop giving away paid time.",
+        },
+        {
+          name: "Payments & Checkout",
+          description: "Get paid on the spot, or send a link.",
+        },
+        {
+          name: "Memberships & Packages",
+          description: "Recurring revenue, handled for you.",
+        },
+        {
+          name: "Estimates & Invoicing",
+          description: "Quote fast, turn a job into an invoice in one tap.",
+        },
+        {
+          name: "Gift Cards & Retail",
+          description: "Sell products and gift cards without another system.",
+        },
+      ],
     },
     {
-      name: "Customer Messaging",
-      description: "Text and email customers without leaving Granvy.",
+      name: "Client records",
+      modules: [
+        {
+          name: "Client Profiles & History",
+          description: "Every customer, visit, and note in one place.",
+        },
+        {
+          name: "Intake & Consent Forms",
+          description: "Sent and completed before the appointment.",
+        },
+        {
+          name: "Medical Forms & Charting",
+          description: "Consent, treatment notes, and photos, kept safe and compliant.",
+        },
+      ],
     },
     {
-      name: "Estimates & Quotations",
-      description: "Send a professional quote before you leave the driveway.",
+      name: "Keeping them coming back",
+      modules: [
+        {
+          name: "Two-Way Messaging",
+          description: "Text and email customers without leaving Granvy.",
+        },
+        {
+          name: "Aftercare Follow-Ups",
+          description: "Automatic check-ins that bring clients back.",
+        },
+        {
+          name: "Campaigns",
+          description: "Email and text promotions that fill the calendar.",
+        },
+        {
+          name: "Review Requests",
+          description: "Turn happy customers into 5-star reviews.",
+        },
+      ],
     },
     {
-      name: "Invoicing",
-      description: "Turn a finished job into an invoice in one tap.",
+      name: "See everything",
+      modules: [
+        {
+          name: "Analytics & Reporting",
+          description: "See what's actually driving revenue.",
+        },
+        {
+          name: "Call Recording & Analytics",
+          description: "Every call captured and searchable.",
+        },
+      ],
     },
     {
-      name: "Payments",
-      description: "Get paid on the spot, or send a link.",
+      name: "Run it on autopilot",
+      modules: [
+        {
+          name: "Workflow Automation",
+          description: "Set the rules once; Granvy runs them every time.",
+        },
+      ],
     },
-    {
-      name: "Staff Scheduling",
-      description: "Know who's where, and who's free for the next job.",
-    },
-    {
-      name: "Analytics & Reporting",
-      description: "See what's actually driving revenue.",
-    },
-    {
-      name: "Marketing & Reviews",
-      description: "Turn happy customers into 5-star reviews and repeat bookings.",
-    },
-    {
-      name: "Workflow Automation",
-      description: "Set the rules once; Granvy runs them every time.",
-    },
-  ] satisfies PlatformModule[],
+  ] satisfies PlatformGroup[],
 };
 
 export const howItWorks = {
@@ -156,13 +251,13 @@ export const howItWorks = {
       number: "02",
       title: "Turn on what you need",
       description:
-        "Start with voice reception. Switch on scheduling, CRM, invoicing, or the rest whenever you're ready.",
+        "Turn on what you need — booking, payments, deposits, forms, records, follow-ups, and more. No new software, no new login.",
     },
     {
       number: "03",
       title: "It runs your front desk",
       description:
-        "Calls get answered, jobs get booked, customers get followed up with — automatically, 24/7.",
+        "Calls get answered, jobs get booked, deposits get taken, customers get followed up with — automatically, 24/7.",
     },
   ],
 };
@@ -174,7 +269,7 @@ export const verticals = {
     {
       name: "Medical Aesthetics Clinics",
       description:
-        "Book consultations, answer treatment questions, and keep client records tidy without a full-time front desk.",
+        "Book consultations, send intake and consent forms before the visit, take deposits, keep charts and photos organized, and run memberships — all without a full-time front desk.",
     },
     {
       name: "Escape Rooms & Experiences",
@@ -195,11 +290,10 @@ export const verticals = {
 };
 
 export const ctaBand = {
-  heading: "Ready to Stop Missing Calls?",
+  heading: "Ready to Let Your Front Desk Run Itself?",
   subheading:
-    "Book a 20-minute demo and see Granvy answer, book, and follow up — using your actual services and calendar.",
+    "Book a 20-minute demo and watch Granvy book, take payment, send forms, and follow up — using your actual services and calendar.",
   primaryCta: "Book a demo",
-  secondaryCta: "Talk to us",
 };
 
 export const footer = {
@@ -208,7 +302,6 @@ export const footer = {
     {
       heading: "Platform",
       links: [
-        { label: "Voice Reception", href: "#voice" },
         { label: "All modules", href: "#platform" },
         { label: "How it works", href: "#how-it-works" },
       ],
