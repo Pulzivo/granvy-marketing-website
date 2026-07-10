@@ -1,6 +1,6 @@
 # Granvy Marketing Website
 
-The marketing site for Granvy — an intelligent front-desk operating platform
+The marketing site for Granvy, an intelligent front-desk operating platform
 for owner-operated service businesses. Built with Next.js (App Router),
 TypeScript, Tailwind CSS v4, and Framer Motion.
 
@@ -15,7 +15,7 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## Editing content
 
-All site copy lives in [`lib/content.ts`](lib/content.ts) — headline, module
+All site copy lives in [`lib/content.ts`](lib/content.ts): headline, module
 list, testimonials, stats, footer links, contact details, everything. Edit
 that one file to update the site's messaging.
 
@@ -34,10 +34,10 @@ is video-ready out of the box:
 3. Optionally add a first-frame still at `public/hero-poster.jpg` for the
    loading state.
 
-That's it — no code changes. The component detects the file, fades it in
+That's it, no code changes. The component detects the file, fades it in
 once it can play, and falls back to the animated brand-gradient mesh if the
 file is missing or fails to load. Users with `prefers-reduced-motion`
-enabled still get the animated gradient/video treated gently — CSS
+enabled still get the animated gradient/video treated gently: CSS
 animations are disabled for them; consider trimming the JS entrance
 animations too if you want full compliance.
 

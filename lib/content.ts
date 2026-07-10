@@ -1,8 +1,8 @@
-// All site copy lives here. Everything below is strong placeholder copy —
-// swap in real numbers, testimonials, and contact details before launch.
+// All site copy lives here. Everything below is strong placeholder copy.
+// Swap in real numbers, testimonials, and contact details before launch.
 // Positioning: Granvy is the front-desk operating system for owner-operated
 // service businesses. Voice is one door into the system, not the whole
-// product — booking, deposits/payments, records/forms, and follow-ups all
+// product: booking, deposits/payments, records/forms, and follow-ups all
 // carry equal weight. Tone: confident, operator-to-operator, no hype.
 
 export const brand = {
@@ -29,14 +29,14 @@ export const hero = {
   headlineAccent: "Automatic.",
   headlinePrefix: "Finally",
   subtitle:
-    "Granvy runs the whole thing — bookings, deposits, forms, reminders, follow-ups, payments,",
+    "Granvy runs the whole thing: bookings, deposits, forms, reminders, follow-ups, payments,",
   subtitleLine2:
-    "and every call, text, and click a customer sends your way — so the business runs itself while you do the work.",
+    "and every call, text, and click a customer sends your way, so the business runs itself while you do the work.",
   primaryCta: "Book a demo",
 };
 
 export const heroDashboard = {
-  title: "Front Desk — Live",
+  title: "Front Desk · Live",
   status: "All systems answering",
   stats: [
     { label: "Bookings captured", value: "128", sub: "this week" },
@@ -46,7 +46,7 @@ export const heroDashboard = {
   activity: [
     {
       type: "call",
-      text: "Incoming call — booked",
+      text: "Incoming call, booked",
       result: "Consultation, Tue 2:00 PM",
     },
     {
@@ -74,8 +74,8 @@ export const heroDashboard = {
 
 export const voiceModule = {
   eyebrow: "One System, Not Eleven Tools",
-  heading: "Everything Your Front Desk Does — Running Itself",
-  body: "The front desk isn't just the phone. It's every booking, every deposit, every form, every reminder, every follow-up — the whole nerve center of your business. Granvy runs all of it, in one system, on autopilot, so nothing slips while you're doing the actual work.",
+  heading: "Everything Your Front Desk Does, Running Itself",
+  body: "The front desk isn't just the phone. It's every booking, every deposit, every form, every reminder, every follow-up. That's the whole nerve center of your business, and Granvy runs all of it, in one system, on autopilot, so nothing slips while you're doing the actual work.",
   features: [
     "Every call, text, and booking answered automatically",
     "Deposits and payments collected without a follow-up call",
@@ -85,7 +85,7 @@ export const voiceModule = {
   ],
   transcript: [
     { from: "caller", text: "Hi, do you have anything open this Thursday afternoon?" },
-    { from: "granvy", text: "Yes — 2:30 or 4:00 PM both work. Which is better for you?" },
+    { from: "granvy", text: "Yes, 2:30 or 4:00 PM both work. Which is better for you?" },
     { from: "caller", text: "4:00 works great." },
     { from: "granvy", text: "Booked for Thursday at 4:00 PM. Confirmation sent." },
   ],
@@ -109,7 +109,7 @@ export const platform = {
   eyebrow: "The Full Platform",
   heading: "Everything Your Front Desk Touches, In One System",
   subheading:
-    "One system for your entire front desk — organized into the layers that actually run your business. Every part talks to every other part. No new software, no new login.",
+    "One system for your entire front desk, organized into the layers that actually run your business. Every part talks to every other part. No new software, no new login.",
   groups: [
     {
       name: "Front doors",
@@ -251,13 +251,13 @@ export const howItWorks = {
       number: "02",
       title: "Turn on what you need",
       description:
-        "Turn on what you need — booking, payments, deposits, forms, records, follow-ups, and more. No new software, no new login.",
+        "Turn on what you need: booking, payments, deposits, forms, records, follow-ups, and more. No new software, no new login.",
     },
     {
       number: "03",
       title: "It runs your front desk",
       description:
-        "Calls get answered, jobs get booked, deposits get taken, customers get followed up with — automatically, 24/7.",
+        "Calls get answered, jobs get booked, deposits get taken, customers get followed up with, all automatically, 24/7.",
     },
   ],
 };
@@ -269,7 +269,7 @@ export const verticals = {
     {
       name: "Medical Aesthetics Clinics",
       description:
-        "Book consultations, send intake and consent forms before the visit, take deposits, keep charts and photos organized, and run memberships — all without a full-time front desk.",
+        "Book consultations, send intake and consent forms before the visit, take deposits, keep charts and photos organized, and run memberships, all without a full-time front desk.",
     },
     {
       name: "Escape Rooms & Experiences",
@@ -292,7 +292,7 @@ export const verticals = {
 export const ctaBand = {
   heading: "Ready to Let Your Front Desk Run Itself?",
   subheading:
-    "Book a 20-minute demo and watch Granvy book, take payment, send forms, and follow up — using your actual services and calendar.",
+    "Book a 20-minute demo and watch Granvy book, take payment, send forms, and follow up, using your actual services and calendar.",
   primaryCta: "Book a demo",
 };
 

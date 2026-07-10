@@ -18,9 +18,9 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "Granvy — AI Automation Solutions for Small Businesses",
+  title: "Granvy: AI Automation Solutions for Small Businesses",
   description:
-    "Granvy is the complete front-desk operating system for owner-operated service businesses — booking, deposits, forms, records, reminders, payments, and every call, text, and click, all in one system.",
+    "Granvy is the complete front-desk operating system for owner-operated service businesses: booking, deposits, forms, records, reminders, payments, and every call, text, and click, all in one system.",
   metadataBase: new URL("https://granvy.com"),
   icons: {
     icon: "/favicon.svg",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     apple: "/icon.svg",
   },
   openGraph: {
-    title: "Granvy — Your business. Running better. Automatically.",
+    title: "Granvy: Your business. Running better. Automatically.",
     description:
       "The front-desk operating platform for owner-operated service businesses. Automate tasks. Save time. Grow smarter.",
     url: "https://granvy.com",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Granvy — Your business. Running better. Automatically.",
+    title: "Granvy: Your business. Running better. Automatically.",
     description:
       "The front-desk operating platform for owner-operated service businesses.",
   },
