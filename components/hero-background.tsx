@@ -6,7 +6,7 @@ import { AnimatedShader } from "./animated-shader";
 /**
  * Video-ready background: drop a looping clip at /public/hero.mp4 (e.g. a
  * Seedance 2.0 export) and it becomes the hero background automatically,
- * fading in once it can play. Until then — or if it 404s — an animated
+ * fading in once it can play. Until then, or if it 404s, an animated
  * WebGL gradient fills the space. No code changes needed to swap.
  */
 export function HeroBackground() {

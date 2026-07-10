@@ -100,7 +100,7 @@ function TranscriptCard() {
       <Reveal delay={0.15 * voiceModule.transcript.length} y={12}>
         <div className="mt-4 flex items-center gap-2 rounded-lg bg-green/10 px-3 py-2.5 text-sm font-medium text-green">
           <CheckCircle2 size={16} />
-          Booked — Thursday, 4:00 PM
+          Booked for Thursday, 4:00 PM
         </div>
       </Reveal>
     </div>
