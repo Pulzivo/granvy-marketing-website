@@ -1,61 +1,31 @@
 import {
-  Phone,
-  MessageCircle,
-  Globe,
-  Calendar,
-  ListChecks,
-  CalendarClock,
-  Bell,
-  ShieldCheck,
+  PhoneCall,
   CreditCard,
   Repeat,
-  Receipt,
-  Gift,
-  Users,
-  FileText,
-  ClipboardList,
-  MessageSquare,
-  RefreshCw,
-  Megaphone,
-  Star,
-  BarChart3,
-  Mic,
-  Workflow,
+  Gauge,
+  Check,
+  ArrowUpRight,
   type LucideIcon,
 } from "lucide-react";
 import { Container } from "./ui/container";
 import { SectionHeading } from "./ui/section-heading";
 import { Reveal } from "./ui/reveal";
-import { platform } from "@/lib/content";
+import { platform, platformPillars } from "@/lib/content";
 
-const icons: Record<string, LucideIcon> = {
-  "AI Voice Reception": Phone,
-  "Website Chat": MessageCircle,
-  "24/7 Online Booking": Globe,
-  "Smart Scheduling": Calendar,
-  "Smart Waitlist": ListChecks,
-  "Staff Scheduling": CalendarClock,
-  "Automatic Reminders": Bell,
-  "Deposits & No-Show Protection": ShieldCheck,
-  "Payments & Checkout": CreditCard,
-  "Memberships & Packages": Repeat,
-  "Estimates & Invoicing": Receipt,
-  "Gift Cards & Retail": Gift,
-  "Client Profiles & History": Users,
-  "Intake & Consent Forms": FileText,
-  "Medical Forms & Charting": ClipboardList,
-  "Two-Way Messaging": MessageSquare,
-  "Aftercare Follow-Ups": RefreshCw,
-  Campaigns: Megaphone,
-  "Review Requests": Star,
-  "Analytics & Reporting": BarChart3,
-  "Call Recording & Analytics": Mic,
-  "Workflow Automation": Workflow,
-};
+const pillarIcons: LucideIcon[] = [PhoneCall, CreditCard, Repeat, Gauge];
+
+// Small UI motif shown inside each pillar so the section reads as real product,
+// not just text.
+const motifs = [
+  <CallMotif key="call" />,
+  <PaymentMotif key="pay" />,
+  <FollowupMotif key="follow" />,
+  <MetricsMotif key="metrics" />,
+];
 
 export function ModulesGrid() {
   return (
-    <section id="platform" className="relative border-t border-white/5 bg-black py-24 md:py-32">
+    <section id="platform" className="grain relative overflow-hidden bg-black py-20 md:py-28">
       <Container>
         <SectionHeading
           eyebrow={platform.eyebrow}
@@ -63,36 +33,117 @@ export function ModulesGrid() {
           subheading={platform.subheading}
         />
 
-        <div className="mt-12 space-y-12">
-          {platform.groups.map((group, gi) => (
-            <div key={group.name}>
-              <Reveal delay={gi * 0.05}>
-                <h3 className="text-sm font-semibold uppercase tracking-wide text-green">
-                  {group.name}
-                </h3>
+        <div className="mt-12 grid gap-4 md:grid-cols-2">
+          {platformPillars.map((pillar, i) => {
+            const Icon = pillarIcons[i % pillarIcons.length];
+            return (
+              <Reveal key={pillar.name} variant="up" delay={(i % 2) * 0.08}>
+                <div className="panel group flex h-full flex-col justify-between gap-8 p-6 transition-colors duration-300 hover:border-white/15 md:p-8">
+                  <div>
+                    <div className="flex items-center justify-between">
+                      <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/[0.06] text-mist">
+                        <Icon size={20} strokeWidth={1.5} />
+                      </span>
+                      <ArrowUpRight
+                        size={18}
+                        className="text-muted/50 transition-colors group-hover:text-mist"
+                      />
+                    </div>
+                    <h3 className="mt-5 text-xl font-semibold tracking-[-0.01em] text-white">
+                      {pillar.name}
+                    </h3>
+                    <p className="mt-2 max-w-sm text-sm leading-relaxed text-muted">
+                      {pillar.description}
+                    </p>
+                  </div>
+                  {motifs[i % motifs.length]}
+                </div>
               </Reveal>
-              <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {group.modules.map((module, i) => {
-                  const Icon = icons[module.name] ?? Workflow;
-                  return (
-                    <Reveal key={module.name} delay={(i % 3) * 0.06}>
-                      <div className="h-full rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition-colors hover:border-white/20">
-                        <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/5 text-mist">
-                          <Icon size={18} />
-                        </span>
-                        <h4 className="mt-4 text-base font-semibold text-white">{module.name}</h4>
-                        <p className="mt-2 text-sm leading-relaxed text-muted">
-                          {module.description}
-                        </p>
-                      </div>
-                    </Reveal>
-                  );
-                })}
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </Container>
     </section>
+  );
+}
+
+function MotifRow({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="flex items-center gap-2 rounded-lg border border-white/[0.06] bg-black/40 px-3 py-2.5 text-xs text-white/80">
+      {children}
+    </div>
+  );
+}
+
+function Dot({ color }: { color: string }) {
+  return <span className={`h-1.5 w-1.5 rounded-full ${color}`} />;
+}
+
+function CallMotif() {
+  return (
+    <div className="space-y-2">
+      <MotifRow>
+        <PhoneCall size={13} className="text-sky" />
+        <span>Incoming call</span>
+        <span className="ml-auto flex items-center gap-1 text-green">
+          <Check size={12} /> Booked
+        </span>
+      </MotifRow>
+      <MotifRow>
+        <Dot color="bg-indigo" />
+        <span>Website chat</span>
+        <span className="ml-auto text-muted">Tue, 2:00 PM</span>
+      </MotifRow>
+    </div>
+  );
+}
+
+function PaymentMotif() {
+  return (
+    <div className="space-y-2">
+      <MotifRow>
+        <CreditCard size={13} className="text-green" />
+        <span>Deposit collected</span>
+        <span className="ml-auto font-medium text-white">$50</span>
+      </MotifRow>
+      <MotifRow>
+        <Dot color="bg-sky" />
+        <span>Invoice paid</span>
+        <span className="ml-auto font-medium text-white">$240</span>
+      </MotifRow>
+    </div>
+  );
+}
+
+function FollowupMotif() {
+  return (
+    <div className="space-y-2">
+      <MotifRow>
+        <Repeat size={13} className="text-violet" />
+        <span>Aftercare follow-up</span>
+        <span className="ml-auto flex items-center gap-1 text-green">
+          <Check size={12} /> Sent
+        </span>
+      </MotifRow>
+      <MotifRow>
+        <Dot color="bg-amber" />
+        <span>Review request</span>
+        <span className="ml-auto text-muted">5.0 ★</span>
+      </MotifRow>
+    </div>
+  );
+}
+
+function MetricsMotif() {
+  return (
+    <div className="flex items-end gap-1.5 rounded-lg border border-white/[0.06] bg-black/40 px-3 py-3">
+      {[40, 55, 45, 70, 60, 85, 100].map((h, i) => (
+        <span
+          key={i}
+          style={{ height: `${h * 0.32}px` }}
+          className="w-full rounded-sm bg-gradient-to-t from-green/30 to-sky/70"
+        />
+      ))}
+    </div>
   );
 }

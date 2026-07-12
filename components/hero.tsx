@@ -2,9 +2,9 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 import { Container } from "./ui/container";
 import { Button } from "./ui/button";
-import { HeroBackground } from "./hero-background";
 import { DashboardMockup } from "./dashboard-mockup";
 import { hero } from "@/lib/content";
 
@@ -14,87 +14,106 @@ export function Hero() {
     target: sectionRef,
     offset: ["start start", "end start"],
   });
-
-  const contentY = useTransform(scrollYProgress, [0, 0.5], [0, -200]);
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const dashboardY = useTransform(scrollYProgress, [0, 1], [0, -250]);
+  const productY = useTransform(scrollYProgress, [0, 1], [0, -60]);
 
   return (
-    <section
-      ref={sectionRef}
-      id="top"
-      className="relative flex flex-col overflow-hidden bg-black md:min-h-screen"
-    >
-      <HeroBackground />
+    <section ref={sectionRef} id="top" className="grain relative overflow-hidden bg-black">
+      {/* Signature spectrum glow behind the headline + product */}
+      <div className="pointer-events-none absolute inset-x-0 -top-40 z-0 h-[900px] spectrum opacity-30 blur-[100px]" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-64 bg-gradient-to-t from-black to-transparent" />
 
-      <Container className="relative z-10 flex flex-col items-center pt-40 text-center md:pt-48">
-        <motion.div style={{ y: contentY, opacity: contentOpacity }} className="flex flex-col items-center">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="liquid-glass mb-6 flex items-center gap-2 rounded-lg px-3 py-2"
-          >
-            <span className="text-sm font-medium text-muted">{hero.eyebrow}</span>
-          </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="mb-3 text-5xl font-medium leading-tight tracking-[-2px] text-white md:text-7xl md:leading-[1.1]"
-          >
-            <span className="block">{hero.headlineLine1}</span>
-            <span className="block">
-              {hero.headlinePrefix}{" "}
-              <span className="font-serif italic font-normal">{hero.headlineAccent}</span>
-            </span>
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="mb-8 max-w-xl text-lg leading-6 text-mist/90"
-          >
-            {hero.subtitle}
-            <br />
-            {hero.subtitleLine2}
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex flex-col items-center gap-4 sm:flex-row"
-          >
-            <Button href="#book-demo" variant="ghost">
-              {hero.primaryCta}
-            </Button>
-          </motion.div>
-        </motion.div>
-      </Container>
-
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.4 }}
-        style={{ y: dashboardY }}
-        className="relative mt-16 md:mt-20 md:flex-1"
-      >
-        <div
-          className="relative w-screen min-h-[420px] md:min-h-[520px]"
-          style={{ marginLeft: "calc(-50vw + 50%)" }}
+      <Container className="relative z-10 pb-20 pt-32 text-center md:pb-28 md:pt-40">
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="mx-auto inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-1.5 text-xs font-medium text-mist/70"
         >
-          <div className="relative z-10 flex justify-center px-4 pb-10 pt-8 md:pb-16 md:pt-12">
-            <div className="w-full max-w-4xl">
+          <span className="h-1.5 w-1.5 rounded-full bg-green" />
+          {hero.eyebrow}
+        </motion.div>
+
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
+          className="mx-auto mt-7 max-w-4xl text-5xl font-semibold leading-[1.03] tracking-[-0.03em] text-white md:text-7xl"
+        >
+          {hero.headlineLine1} {hero.headlinePrefix}{" "}
+          <span className="gradient-text font-serif italic font-normal">
+            {hero.headlineAccent}
+          </span>
+          .
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-mist/70 md:text-lg"
+        >
+          {hero.subtitle} {hero.subtitleLine2}
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.32 }}
+          className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row"
+        >
+          <Button href="#book-demo" variant="primary" className="!px-8 !py-3.5">
+            {hero.primaryCta}
+          </Button>
+          <a
+            href="#how-it-works"
+            className="group inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-mist/80 transition-colors hover:text-white"
+          >
+            {hero.secondaryCta}
+            <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5" />
+          </a>
+        </motion.div>
+
+        {/* Framed product surface with depth and spectrum glow */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
+          style={{ y: productY }}
+          className="relative mx-auto mt-16 max-w-5xl md:mt-20"
+        >
+          <div className="pointer-events-none absolute -inset-x-10 -top-10 bottom-0 -z-10 spectrum opacity-40 blur-3xl" />
+          <div className="panel-product overflow-hidden p-2 text-left md:p-3">
+            <div className="flex items-center gap-1.5 px-3 py-2">
+              <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+              <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+              <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+            </div>
+            <div className="overflow-hidden rounded-xl">
               <DashboardMockup />
             </div>
           </div>
-        </div>
-      </motion.div>
+        </motion.div>
 
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-40 bg-gradient-to-t from-black to-transparent" />
+        {/* Trust row */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.7 }}
+          className="mt-14 flex flex-col items-center gap-6"
+        >
+          <p className="text-xs font-medium uppercase tracking-[0.22em] text-mist/40">
+            {hero.trust}
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
+            {hero.stats.map((stat) => (
+              <div key={stat.label} className="flex items-baseline gap-2">
+                <span className="text-2xl font-semibold text-white">{stat.value}</span>
+                <span className="text-sm text-muted">{stat.label}</span>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+      </Container>
     </section>
   );
 }

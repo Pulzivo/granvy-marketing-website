@@ -5,8 +5,8 @@ import { howItWorks } from "@/lib/content";
 
 export function HowItWorks() {
   return (
-    <section id="how-it-works" className="relative border-t border-white/5 bg-black py-24 md:py-32">
-      <Container>
+    <section id="how-it-works" className="relative overflow-hidden border-t border-white/[0.06] bg-black py-20 md:py-24">
+      <Container className="relative">
         <SectionHeading
           eyebrow={howItWorks.eyebrow}
           heading={howItWorks.heading}
@@ -14,14 +14,16 @@ export function HowItWorks() {
           className="mx-auto"
         />
 
-        <div className="relative mt-16 grid gap-10 md:grid-cols-3 md:gap-8">
-          <div className="pointer-events-none absolute left-0 right-0 top-6 hidden h-px bg-gradient-to-r from-transparent via-white/15 to-transparent md:block" />
+        <div className="mt-12 grid gap-4 md:grid-cols-3">
           {howItWorks.steps.map((step, i) => (
-            <Reveal key={step.number} delay={i * 0.1}>
-              <div className="relative">
-                <span className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full border border-green/40 bg-black text-sm font-semibold text-green">
-                  {step.number}
-                </span>
+            <Reveal key={step.number} variant="up" delay={i * 0.1}>
+              <div className="panel h-full p-6 md:p-7">
+                <div className="flex items-center gap-3">
+                  <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/[0.06] text-sm font-semibold text-mist">
+                    {step.number}
+                  </span>
+                  <span className="h-px flex-1 bg-gradient-to-r from-white/15 to-transparent" />
+                </div>
                 <h3 className="mt-5 text-lg font-semibold text-white">{step.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted">{step.description}</p>
               </div>
