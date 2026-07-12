@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { ChevronDown } from "lucide-react";
 import { Container } from "./ui/container";
 import { Button } from "./ui/button";
 import { HeroBackground } from "./hero-background";
@@ -15,86 +16,99 @@ export function Hero() {
     offset: ["start start", "end start"],
   });
 
-  const contentY = useTransform(scrollYProgress, [0, 0.5], [0, -200]);
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const dashboardY = useTransform(scrollYProgress, [0, 1], [0, -250]);
+  // The whole headline block lifts and fades as you scroll past the first screen,
+  // handing off to the parallax dashboard below.
+  const titleY = useTransform(scrollYProgress, [0, 1], [0, -260]);
+  const titleOpacity = useTransform(scrollYProgress, [0, 0.55], [1, 0]);
+  const titleScale = useTransform(scrollYProgress, [0, 1], [1, 1.08]);
+  const dashboardY = useTransform(scrollYProgress, [0.2, 1], [120, -120]);
+  const cueOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
 
   return (
-    <section
-      ref={sectionRef}
-      id="top"
-      className="relative flex flex-col overflow-hidden bg-black md:min-h-screen"
-    >
-      <HeroBackground />
+    <section ref={sectionRef} id="top" className="relative bg-black">
+      {/* Full-viewport cinematic headline */}
+      <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden">
+        <HeroBackground />
+        <div className="aurora" />
 
-      <Container className="relative z-10 flex flex-col items-center pt-40 text-center md:pt-48">
-        <motion.div style={{ y: contentY, opacity: contentOpacity }} className="flex flex-col items-center">
+        <motion.div
+          style={{ y: titleY, opacity: titleOpacity, scale: titleScale }}
+          className="relative z-10"
+        >
+          <Container className="flex flex-col items-center text-center">
+            <motion.span
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="mb-8 inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.3em] text-mist/50"
+            >
+              {hero.eyebrow}
+            </motion.span>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+              className="text-6xl font-semibold leading-[0.95] tracking-[-0.03em] text-white sm:text-7xl md:text-8xl lg:text-[8.5rem]"
+            >
+              <span className="block text-glow">{hero.headlineLine1}</span>
+              <span className="block">
+                {hero.headlinePrefix}{" "}
+                <span className="text-aurora font-serif italic font-normal">
+                  {hero.headlineAccent}
+                </span>
+              </span>
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.35 }}
+              className="mt-8 max-w-2xl text-base leading-relaxed text-mist/80 md:text-lg"
+            >
+              {hero.subtitle} {hero.subtitleLine2}
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="mt-10"
+            >
+              <Button href="#book-demo" variant="primary" className="!px-9 !py-4 text-base">
+                {hero.primaryCta}
+              </Button>
+            </motion.div>
+          </Container>
+        </motion.div>
+
+        <motion.div
+          style={{ opacity: cueOpacity }}
+          className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2"
+        >
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="liquid-glass mb-6 flex items-center gap-2 rounded-lg px-3 py-2"
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+            className="flex flex-col items-center gap-2 text-mist/50"
           >
-            <span className="text-sm font-medium text-muted">{hero.eyebrow}</span>
-          </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="mb-3 text-5xl font-medium leading-tight tracking-[-2px] text-white md:text-7xl md:leading-[1.1]"
-          >
-            <span className="block">{hero.headlineLine1}</span>
-            <span className="block">
-              {hero.headlinePrefix}{" "}
-              <span className="font-serif italic font-normal">{hero.headlineAccent}</span>
-            </span>
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="mb-8 max-w-xl text-lg leading-6 text-mist/90"
-          >
-            {hero.subtitle}
-            <br />
-            {hero.subtitleLine2}
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex flex-col items-center gap-4 sm:flex-row"
-          >
-            <Button href="#book-demo" variant="ghost">
-              {hero.primaryCta}
-            </Button>
+            <span className="text-[11px] uppercase tracking-[0.3em]">Scroll</span>
+            <ChevronDown size={18} />
           </motion.div>
         </motion.div>
-      </Container>
+      </div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.4 }}
-        style={{ y: dashboardY }}
-        className="relative mt-16 md:mt-20 md:flex-1"
-      >
-        <div
-          className="relative w-screen min-h-[420px] md:min-h-[520px]"
-          style={{ marginLeft: "calc(-50vw + 50%)" }}
+      {/* Parallax dashboard hand-off into the rest of the page */}
+      <div className="relative overflow-hidden pb-24 md:pb-32">
+        <motion.div
+          style={{ y: dashboardY }}
+          className="relative z-10 flex justify-center px-4"
         >
-          <div className="relative z-10 flex justify-center px-4 pb-10 pt-8 md:pb-16 md:pt-12">
-            <div className="w-full max-w-4xl">
-              <DashboardMockup />
-            </div>
+          <div className="w-full max-w-4xl">
+            <DashboardMockup />
           </div>
-        </div>
-      </motion.div>
-
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-40 bg-gradient-to-t from-black to-transparent" />
+        </motion.div>
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-40 bg-gradient-to-t from-black to-transparent" />
+      </div>
     </section>
   );
 }

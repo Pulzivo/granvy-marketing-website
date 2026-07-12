@@ -5,36 +5,35 @@ import { ctaBand, brand } from "@/lib/content";
 
 export function CtaBand() {
   return (
-    <section id="book-demo" className="relative border-t border-white/5 bg-black py-24 md:py-32">
-      <Container>
-        <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-green-dim via-black to-black px-6 py-16 text-center md:px-16 md:py-24">
-          <div
-            className="pointer-events-none absolute inset-0 opacity-40 [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]"
-          >
-            <div className="bg-grid absolute inset-0" />
-          </div>
+    <section
+      id="book-demo"
+      className="relative flex min-h-[80vh] items-center justify-center overflow-hidden bg-black py-32 text-center md:py-44"
+    >
+      <div className="aurora" />
+      <div className="bg-grid pointer-events-none absolute inset-0 opacity-20 [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]" />
 
-          <Reveal className="relative">
-            <h2 className="mx-auto max-w-2xl text-3xl md:text-5xl font-medium tracking-[-0.02em] leading-[1.1] text-white">
-              {ctaBand.heading}
-            </h2>
-          </Reveal>
-          <Reveal delay={0.1} className="relative">
-            <p className="mx-auto mt-5 max-w-xl text-base md:text-lg leading-relaxed text-muted">
-              {ctaBand.subheading}
-            </p>
-          </Reveal>
-          <Reveal delay={0.2} className="relative">
-            <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <Button
-                href={`mailto:${brand.contactEmail}?subject=${encodeURIComponent("Book a demo")}`}
-                variant="primary"
-              >
-                {ctaBand.primaryCta}
-              </Button>
-            </div>
-          </Reveal>
-        </div>
+      <Container className="relative">
+        <Reveal variant="scale">
+          <h2 className="mx-auto max-w-3xl text-4xl font-semibold leading-[1.05] tracking-[-0.02em] text-white text-glow md:text-7xl">
+            {ctaBand.heading}
+          </h2>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-mist/80 md:text-lg">
+            {ctaBand.subheading}
+          </p>
+        </Reveal>
+        <Reveal delay={0.2}>
+          <div className="mt-10 flex justify-center">
+            <Button
+              href={`mailto:${brand.contactEmail}?subject=${encodeURIComponent("Book a demo")}`}
+              variant="primary"
+              className="!px-9 !py-4 text-base"
+            >
+              {ctaBand.primaryCta}
+            </Button>
+          </div>
+        </Reveal>
       </Container>
     </section>
   );

@@ -1,61 +1,15 @@
-import {
-  Phone,
-  MessageCircle,
-  Globe,
-  Calendar,
-  ListChecks,
-  CalendarClock,
-  Bell,
-  ShieldCheck,
-  CreditCard,
-  Repeat,
-  Receipt,
-  Gift,
-  Users,
-  FileText,
-  ClipboardList,
-  MessageSquare,
-  RefreshCw,
-  Megaphone,
-  Star,
-  BarChart3,
-  Mic,
-  Workflow,
-  type LucideIcon,
-} from "lucide-react";
+import { PhoneCall, CreditCard, Repeat, Gauge, type LucideIcon } from "lucide-react";
 import { Container } from "./ui/container";
 import { SectionHeading } from "./ui/section-heading";
 import { Reveal } from "./ui/reveal";
-import { platform } from "@/lib/content";
+import { platform, platformPillars } from "@/lib/content";
 
-const icons: Record<string, LucideIcon> = {
-  "AI Voice Reception": Phone,
-  "Website Chat": MessageCircle,
-  "24/7 Online Booking": Globe,
-  "Smart Scheduling": Calendar,
-  "Smart Waitlist": ListChecks,
-  "Staff Scheduling": CalendarClock,
-  "Automatic Reminders": Bell,
-  "Deposits & No-Show Protection": ShieldCheck,
-  "Payments & Checkout": CreditCard,
-  "Memberships & Packages": Repeat,
-  "Estimates & Invoicing": Receipt,
-  "Gift Cards & Retail": Gift,
-  "Client Profiles & History": Users,
-  "Intake & Consent Forms": FileText,
-  "Medical Forms & Charting": ClipboardList,
-  "Two-Way Messaging": MessageSquare,
-  "Aftercare Follow-Ups": RefreshCw,
-  Campaigns: Megaphone,
-  "Review Requests": Star,
-  "Analytics & Reporting": BarChart3,
-  "Call Recording & Analytics": Mic,
-  "Workflow Automation": Workflow,
-};
+const pillarIcons: LucideIcon[] = [PhoneCall, CreditCard, Repeat, Gauge];
 
 export function ModulesGrid() {
   return (
-    <section id="platform" className="relative border-t border-white/5 bg-black py-24 md:py-32">
+    <section id="platform" className="relative overflow-hidden bg-black py-28 md:py-40">
+      <hr className="section-divider absolute inset-x-0 top-0" />
       <Container>
         <SectionHeading
           eyebrow={platform.eyebrow}
@@ -63,34 +17,25 @@ export function ModulesGrid() {
           subheading={platform.subheading}
         />
 
-        <div className="mt-12 space-y-12">
-          {platform.groups.map((group, gi) => (
-            <div key={group.name}>
-              <Reveal delay={gi * 0.05}>
-                <h3 className="text-sm font-semibold uppercase tracking-wide text-green">
-                  {group.name}
-                </h3>
+        <div className="mt-16 grid gap-x-12 gap-y-14 sm:grid-cols-2">
+          {platformPillars.map((pillar, i) => {
+            const Icon = pillarIcons[i % pillarIcons.length];
+            return (
+              <Reveal key={pillar.name} variant="blur" delay={(i % 2) * 0.08}>
+                <div className="group max-w-md">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/[0.04] text-mist transition-colors duration-300 group-hover:text-green">
+                    <Icon size={22} strokeWidth={1.5} />
+                  </span>
+                  <h3 className="mt-6 text-2xl font-semibold tracking-[-0.01em] text-white">
+                    {pillar.name}
+                  </h3>
+                  <p className="mt-3 text-base leading-relaxed text-muted">
+                    {pillar.description}
+                  </p>
+                </div>
               </Reveal>
-              <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {group.modules.map((module, i) => {
-                  const Icon = icons[module.name] ?? Workflow;
-                  return (
-                    <Reveal key={module.name} delay={(i % 3) * 0.06}>
-                      <div className="h-full rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition-colors hover:border-white/20">
-                        <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/5 text-mist">
-                          <Icon size={18} />
-                        </span>
-                        <h4 className="mt-4 text-base font-semibold text-white">{module.name}</h4>
-                        <p className="mt-2 text-sm leading-relaxed text-muted">
-                          {module.description}
-                        </p>
-                      </div>
-                    </Reveal>
-                  );
-                })}
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </Container>
     </section>

@@ -24,20 +24,18 @@ export const nav = {
 };
 
 export const hero = {
-  eyebrow: "The complete front-desk operating system",
+  eyebrow: "The front-desk operating system",
   headlineLine1: "Your Front Desk.",
   headlineAccent: "Automatic.",
   headlinePrefix: "Finally",
-  subtitle:
-    "Granvy runs the whole thing: bookings, deposits, forms, reminders, follow-ups, payments,",
-  subtitleLine2:
-    "and every call, text, and click a customer sends your way, so the business runs itself while you do the work.",
+  subtitle: "Calls answered, jobs booked, payments taken, clients followed up.",
+  subtitleLine2: "The whole front desk runs itself while you do the work.",
   primaryCta: "Book a demo",
 };
 
 export const heroDashboard = {
-  title: "Front Desk · Live",
-  status: "All systems answering",
+  title: "Front Desk",
+  status: "This week",
   stats: [
     { label: "Bookings captured", value: "128", sub: "this week" },
     { label: "No-shows prevented", value: "24", sub: "this week" },
@@ -73,14 +71,12 @@ export const heroDashboard = {
 };
 
 export const voiceModule = {
-  eyebrow: "One System, Not Eleven Tools",
-  heading: "Everything Your Front Desk Does, Running Itself",
-  body: "The front desk isn't just the phone. It's every booking, every deposit, every form, every reminder, every follow-up. That's the whole nerve center of your business, and Granvy runs all of it, in one system, on autopilot, so nothing slips while you're doing the actual work.",
+  eyebrow: "Answers every call",
+  heading: "It picks up, books the job, and moves on",
+  body: "No voicemail, no missed leads. Granvy answers the phone, checks the calendar, and books the appointment while you keep working.",
   features: [
-    "Every call, text, and booking answered automatically",
-    "Deposits and payments collected without a follow-up call",
-    "Forms and consent completed before the appointment",
-    "Reminders and follow-ups sent without anyone lifting a finger",
+    "Every call answered and booked, 24/7",
+    "Deposits taken to hold the slot",
     "Real emergencies escalated straight to you",
   ],
   transcript: [
@@ -105,11 +101,34 @@ export type PlatformGroup = {
   modules: PlatformModule[];
 };
 
+export const platformPillars = [
+  {
+    name: "Never miss a customer",
+    description:
+      "Every call, chat, and booking answered and scheduled, day or night.",
+  },
+  {
+    name: "Get paid without chasing",
+    description:
+      "Deposits, checkout, memberships, and invoices, all collected automatically.",
+  },
+  {
+    name: "Keep clients coming back",
+    description:
+      "Records, forms, reminders, and follow-ups that bring people back on their own.",
+  },
+  {
+    name: "Runs itself, in full view",
+    description:
+      "Automations do the busywork; clear reporting shows what drives revenue.",
+  },
+];
+
 export const platform = {
-  eyebrow: "The Full Platform",
-  heading: "Everything Your Front Desk Touches, In One System",
+  eyebrow: "The platform",
+  heading: "One system runs the whole front desk",
   subheading:
-    "One system for your entire front desk, organized into the layers that actually run your business. Every part talks to every other part. No new software, no new login.",
+    "Not eleven tools bolted together. Four things your front desk does, on autopilot.",
   groups: [
     {
       name: "Front doors",

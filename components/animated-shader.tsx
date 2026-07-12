@@ -29,17 +29,18 @@ void main() {
   float v = (v1 + v2 + v3 + v4) * 0.25;
   float band = 0.5 + 0.5 * v;
 
+  // Muted, mostly-dark palette: a faint teal glow rather than a green wash.
   vec3 black = vec3(0.0, 0.0, 0.0);
-  vec3 deepGreen = vec3(0.01, 0.06, 0.045);
-  vec3 green = vec3(0.0627, 0.7255, 0.5059);
-  vec3 lightGreen = vec3(0.3529, 0.949, 0.7137);
+  vec3 deepGreen = vec3(0.006, 0.024, 0.022);
+  vec3 green = vec3(0.028, 0.14, 0.115);
+  vec3 lightGreen = vec3(0.09, 0.22, 0.19);
 
-  vec3 color = mix(deepGreen, green, smoothstep(0.15, 0.75, band));
-  color = mix(color, lightGreen, smoothstep(0.72, 0.95, band));
-  color = mix(black, color, smoothstep(0.0, 0.2, band));
+  vec3 color = mix(deepGreen, green, smoothstep(0.25, 0.85, band));
+  color = mix(color, lightGreen, smoothstep(0.8, 0.98, band));
+  color = mix(black, color, smoothstep(0.0, 0.35, band));
 
-  float vign = 1.0 - smoothstep(0.6, 1.5, length(p));
-  color *= 0.5 + vign * 0.6;
+  float vign = 1.0 - smoothstep(0.4, 1.4, length(p));
+  color *= 0.35 + vign * 0.45;
 
   gl_FragColor = vec4(color, 1.0);
 }

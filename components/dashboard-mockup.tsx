@@ -21,10 +21,7 @@ export function DashboardMockup() {
   return (
     <div className="w-full rounded-2xl border border-white/10 bg-black/70 shadow-[0_40px_120px_-20px_rgba(0,0,0,0.8)] backdrop-blur-xl">
       <div className="flex items-center justify-between border-b border-white/10 px-5 py-4 md:px-7 md:py-5">
-        <div className="flex items-center gap-2">
-          <span className="h-2 w-2 rounded-full bg-green" style={{ animation: "pulse-dot 2s ease-in-out infinite" }} />
-          <span className="text-sm font-medium text-white">{heroDashboard.title}</span>
-        </div>
+        <span className="text-sm font-medium text-white">{heroDashboard.title}</span>
         <span className="text-xs font-medium text-muted">{heroDashboard.status}</span>
       </div>
 
@@ -53,12 +50,12 @@ export function DashboardMockup() {
               key={i}
               className="flex items-center gap-3 rounded-lg px-2 py-2.5 text-sm hover:bg-white/[0.03]"
             >
-              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-green/10 text-green">
+              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/[0.06] text-mist">
                 <Icon size={14} />
               </span>
               <span className="min-w-0 flex-1 truncate text-white/80">{item.text}</span>
-              <span className="flex shrink-0 items-center gap-1 text-xs font-medium text-green">
-                <CheckCircle2 size={12} />
+              <span className="flex shrink-0 items-center gap-1 text-xs font-medium text-muted">
+                <CheckCircle2 size={12} className="text-green" />
                 <span className="hidden sm:inline">{item.result}</span>
               </span>
             </div>
