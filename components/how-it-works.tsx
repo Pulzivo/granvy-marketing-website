@@ -5,9 +5,7 @@ import { howItWorks } from "@/lib/content";
 
 export function HowItWorks() {
   return (
-    <section id="how-it-works" className="relative overflow-hidden bg-black py-28 md:py-40">
-      <hr className="section-divider absolute inset-x-0 top-0" />
-      <div className="aurora aurora-soft" />
+    <section id="how-it-works" className="relative overflow-hidden border-t border-white/[0.06] bg-black py-20 md:py-24">
       <Container className="relative">
         <SectionHeading
           eyebrow={howItWorks.eyebrow}
@@ -16,20 +14,18 @@ export function HowItWorks() {
           className="mx-auto"
         />
 
-        <div className="relative mt-20 grid gap-14 md:grid-cols-3 md:gap-10">
-          <div className="pointer-events-none absolute left-0 right-0 top-8 hidden h-px bg-gradient-to-r from-transparent via-green/30 to-transparent md:block" />
+        <div className="mt-12 grid gap-4 md:grid-cols-3">
           {howItWorks.steps.map((step, i) => (
-            <Reveal key={step.number} variant="scale" delay={i * 0.12}>
-              <div className="relative flex flex-col items-center text-center md:items-start md:text-left">
-                <span className="relative z-10 flex h-16 w-16 items-center justify-center">
-                  <span className="absolute inset-0 rounded-full bg-gradient-to-br from-green/50 to-transparent animate-spin-slow" />
-                  <span className="absolute inset-[2px] rounded-full bg-black" />
-                  <span className="relative text-lg font-semibold text-green text-glow">
+            <Reveal key={step.number} variant="up" delay={i * 0.1}>
+              <div className="panel h-full p-6 md:p-7">
+                <div className="flex items-center gap-3">
+                  <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/[0.06] text-sm font-semibold text-mist">
                     {step.number}
                   </span>
-                </span>
-                <h3 className="mt-6 text-xl font-semibold text-white">{step.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted">{step.description}</p>
+                  <span className="h-px flex-1 bg-gradient-to-r from-white/15 to-transparent" />
+                </div>
+                <h3 className="mt-5 text-lg font-semibold text-white">{step.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted">{step.description}</p>
               </div>
             </Reveal>
           ))}

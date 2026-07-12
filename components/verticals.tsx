@@ -5,31 +5,25 @@ import { Reveal } from "./ui/reveal";
 import { verticals } from "@/lib/content";
 
 const icons: LucideIcon[] = [Sparkles, Puzzle, Wrench, Scissors];
+const accents = ["text-green", "text-sky", "text-indigo", "text-violet"];
 
 export function Verticals() {
   return (
-    <section id="who-its-for" className="relative overflow-hidden bg-black py-28 md:py-40">
-      <hr className="section-divider absolute inset-x-0 top-0" />
+    <section id="who-its-for" className="relative overflow-hidden border-t border-white/[0.06] bg-black py-20 md:py-24">
       <Container>
         <SectionHeading eyebrow={verticals.eyebrow} heading={verticals.heading} />
 
-        <div className="mt-16 divide-y divide-white/10">
+        <div className="mt-10 grid gap-4 sm:grid-cols-2">
           {verticals.industries.map((industry, i) => {
             const Icon = icons[i % icons.length];
             return (
-              <Reveal key={industry.name} variant={i % 2 === 0 ? "left" : "right"} delay={i * 0.06}>
-                <div className="group flex gap-6 py-8">
-                  <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white/[0.04] text-mist transition-colors duration-300 group-hover:text-green">
-                    <Icon size={22} strokeWidth={1.5} />
+              <Reveal key={industry.name} variant="up" delay={(i % 2) * 0.08}>
+                <div className="panel group h-full p-6 transition-colors duration-300 hover:border-white/15 md:p-7">
+                  <span className={`flex h-12 w-12 items-center justify-center rounded-xl bg-white/[0.05] ${accents[i % accents.length]}`}>
+                    <Icon size={20} strokeWidth={1.5} />
                   </span>
-                  <div>
-                    <h3 className="text-xl font-semibold text-white transition-colors group-hover:text-white">
-                      {industry.name}
-                    </h3>
-                    <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted md:text-base">
-                      {industry.description}
-                    </p>
-                  </div>
+                  <h3 className="mt-5 text-lg font-semibold text-white">{industry.name}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted">{industry.description}</p>
                 </div>
               </Reveal>
             );

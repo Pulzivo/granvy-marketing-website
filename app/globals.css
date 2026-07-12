@@ -12,6 +12,12 @@
   --color-green: #10b981;
   --color-green-light: #34d399;
   --color-green-dim: #0f2e26;
+
+  /* Editorial multi-hue accents (Stripe-style spectrum) */
+  --color-sky: #38bdf8;
+  --color-indigo: #6366f1;
+  --color-violet: #a855f7;
+  --color-amber: #fbbf24;
 }
 
 @theme inline {
@@ -26,6 +32,10 @@
   --color-green: var(--color-green);
   --color-green-light: var(--color-green-light);
   --color-green-dim: var(--color-green-dim);
+  --color-sky: var(--color-sky);
+  --color-indigo: var(--color-indigo);
+  --color-violet: var(--color-violet);
+  --color-amber: var(--color-amber);
 
   --font-sans: var(--font-poppins);
   --font-serif: var(--font-instrument-serif);
@@ -111,58 +121,80 @@ body {
 }
 
 /* ---------------------------------------------------------------------------
-   Cinematic / dramatic-dark styling
-   Animated aurora fields, moving gradient text, and glow used across the
-   redesigned full-page sections. Kept in CSS so heavy visuals stay off the
-   React render path.
+   Editorial / Stripe-style styling
+   A layered multi-hue spectrum (green → sky → indigo → violet) used as the
+   signature accent, plus grain, panels, and gradient text. Heavy visuals live
+   in CSS so they stay off the React render path.
 --------------------------------------------------------------------------- */
 
-/* Slowly drifting aurora blobs behind a section */
+/* Signature spectrum used for hero glow and the CTA band */
+.spectrum {
+  background:
+    radial-gradient(50% 60% at 15% 20%, rgba(16, 185, 129, 0.55), transparent 60%),
+    radial-gradient(45% 55% at 55% 15%, rgba(56, 189, 248, 0.45), transparent 62%),
+    radial-gradient(55% 65% at 85% 35%, rgba(99, 102, 241, 0.5), transparent 62%),
+    radial-gradient(50% 60% at 70% 90%, rgba(168, 85, 247, 0.4), transparent 62%),
+    radial-gradient(45% 55% at 20% 85%, rgba(251, 191, 36, 0.28), transparent 60%);
+  background-size: 200% 200%;
+  animation: spectrum-drift 24s ease-in-out infinite alternate;
+}
+
+@keyframes spectrum-drift {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Soft hero aurora: a dim wash of the spectrum bleeding down from the top */
 .aurora {
   position: absolute;
-  inset: -20%;
+  inset: -25% -10% auto -10%;
+  height: 80%;
   pointer-events: none;
   filter: blur(90px);
-  opacity: 0.32;
+  opacity: 0.4;
   background:
-    radial-gradient(38% 42% at 22% 28%, rgba(16, 185, 129, 0.32), transparent 72%),
-    radial-gradient(40% 44% at 80% 78%, rgba(56, 130, 246, 0.22), transparent 74%),
-    radial-gradient(50% 52% at 60% 50%, rgba(148, 163, 184, 0.14), transparent 76%);
+    radial-gradient(40% 60% at 25% 25%, rgba(16, 185, 129, 0.35), transparent 65%),
+    radial-gradient(45% 60% at 60% 15%, rgba(56, 189, 248, 0.3), transparent 65%),
+    radial-gradient(45% 65% at 82% 30%, rgba(99, 102, 241, 0.35), transparent 65%);
   background-size: 180% 180%;
-  animation: aurora-drift 26s ease-in-out infinite alternate;
+  animation: spectrum-drift 28s ease-in-out infinite alternate;
 }
 
 .aurora-soft {
-  opacity: 0.18;
-  filter: blur(110px);
-  animation-duration: 34s;
+  opacity: 0.2;
+  filter: blur(120px);
+  animation-duration: 36s;
 }
 
-@keyframes aurora-drift {
-  0% {
-    background-position: 0% 0%;
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  50% {
-    background-position: 60% 40%;
-    transform: translate3d(2%, -2%, 0) scale(1.08);
-  }
-  100% {
-    background-position: 100% 100%;
-    transform: translate3d(-2%, 2%, 0) scale(1);
-  }
+/* Fine film grain for texture over dark surfaces */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* Headline gradient that slowly shifts, giving the hero life */
+/* Multi-hue text gradient for headline accents */
+.gradient-text {
+  background: linear-gradient(100deg, #34d399 0%, #38bdf8 38%, #818cf8 68%, #c084fc 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: text-shimmer 9s linear infinite;
+}
+
+/* Kept as an alias so existing accent markup still renders */
 .text-aurora {
-  background: linear-gradient(
-    100deg,
-    #ffffff 0%,
-    #d1fae5 40%,
-    #6ee7b7 55%,
-    #ffffff 80%
-  );
-  background-size: 250% auto;
+  background: linear-gradient(100deg, #ffffff 0%, #a7f3d0 45%, #7dd3fc 75%, #ffffff 100%);
+  background-size: 220% auto;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -171,48 +203,78 @@ body {
 
 @keyframes text-shimmer {
   to {
-    background-position: 250% center;
+    background-position: 200% center;
   }
 }
 
-/* Soft green glow used on emphasis elements */
-.glow-green {
+/* Translucent editorial surface with soft depth */
+.panel {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 24px 60px -30px rgba(0, 0, 0, 0.8);
+}
+
+/* Framed product surface with a gradient hairline border */
+.panel-product {
+  position: relative;
+  border-radius: 20px;
+  background: linear-gradient(180deg, rgba(20, 24, 33, 0.9), rgba(8, 10, 14, 0.95));
   box-shadow:
-    0 0 0 1px rgba(16, 185, 129, 0.25),
-    0 0 40px -8px rgba(16, 185, 129, 0.45);
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 40px 120px -30px rgba(0, 0, 0, 0.9),
+    0 0 80px -20px rgba(56, 189, 248, 0.25);
+}
+
+.gradient-border {
+  position: relative;
+}
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(140deg, rgba(52, 211, 153, 0.6), rgba(56, 189, 248, 0.35), rgba(99, 102, 241, 0.5));
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
 }
 
 .text-glow {
-  text-shadow: 0 0 45px rgba(255, 255, 255, 0.18);
+  text-shadow: 0 0 45px rgba(255, 255, 255, 0.16);
 }
 
-/* Animated conic ring used behind the how-it-works step numbers */
 @keyframes spin-slow {
   to {
     transform: rotate(360deg);
   }
 }
-
 .animate-spin-slow {
-  animation: spin-slow 12s linear infinite;
+  animation: spin-slow 14s linear infinite;
 }
 
-/* Thin gradient divider between full-bleed sections */
+/* Thin gradient divider between sections */
 .section-divider {
   height: 1px;
   border: 0;
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(16, 185, 129, 0.4),
-    rgba(255, 255, 255, 0.15),
+    rgba(56, 189, 248, 0.3),
+    rgba(99, 102, 241, 0.3),
     transparent
   );
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .spectrum,
   .aurora,
   .text-aurora,
+  .gradient-text,
   .animate-spin-slow {
     animation: none !important;
   }

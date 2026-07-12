@@ -25,12 +25,19 @@ export const nav = {
 
 export const hero = {
   eyebrow: "The front-desk operating system",
-  headlineLine1: "Your Front Desk.",
-  headlineAccent: "Automatic.",
-  headlinePrefix: "Finally",
+  headlineLine1: "Your front desk,",
+  headlineAccent: "on autopilot",
+  headlinePrefix: "finally",
   subtitle: "Calls answered, jobs booked, payments taken, clients followed up.",
   subtitleLine2: "The whole front desk runs itself while you do the work.",
   primaryCta: "Book a demo",
+  secondaryCta: "See how it works",
+  trust: "Built for owner-operated service businesses",
+  stats: [
+    { value: "24/7", label: "Answered" },
+    { value: "3x", label: "Fewer no-shows" },
+    { value: "15 min", label: "To set up" },
+  ],
 };
 
 export const heroDashboard = {

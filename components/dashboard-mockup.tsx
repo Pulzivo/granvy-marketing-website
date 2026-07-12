@@ -19,7 +19,7 @@ const activityIcons: Record<string, LucideIcon> = {
 
 export function DashboardMockup() {
   return (
-    <div className="w-full rounded-2xl border border-white/10 bg-black/70 shadow-[0_40px_120px_-20px_rgba(0,0,0,0.8)] backdrop-blur-xl">
+    <div className="w-full bg-black/40">
       <div className="flex items-center justify-between border-b border-white/10 px-5 py-4 md:px-7 md:py-5">
         <span className="text-sm font-medium text-white">{heroDashboard.title}</span>
         <span className="text-xs font-medium text-muted">{heroDashboard.status}</span>

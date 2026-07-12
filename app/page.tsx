@@ -1,3 +1,4 @@
+import { Nav } from "@/components/nav";
 import { Hero } from "@/components/hero";
 import { VoiceModule } from "@/components/voice-module";
 import { ModulesGrid } from "@/components/modules-grid";
@@ -8,14 +9,17 @@ import { Footer } from "@/components/footer";
 
 export default function Home() {
   return (
-    <main className="flex-1">
-      <Hero />
-      <VoiceModule />
-      <ModulesGrid />
-      <HowItWorks />
-      <Verticals />
-      <CtaBand />
-      <Footer />
-    </main>
+    <>
+      <Nav />
+      <main className="flex-1">
+        <Hero />
+        <VoiceModule />
+        <ModulesGrid />
+        <HowItWorks />
+        <Verticals />
+        <CtaBand />
+        <Footer />
+      </main>
+    </>
   );
 }
