@@ -20,12 +20,12 @@ export function LogoMark({ className }: { className?: string }) {
         strokeLinecap="round"
       />
       <path
-        d="M47 58 H66"
+        d="M50 58 H72"
         stroke="url(#granvy-g-gradient)"
         strokeWidth="14"
         strokeLinecap="round"
       />
-      <path d="M63 47 L84 58 L63 69 Z" fill="url(#granvy-g-gradient)" />
+      <path d="M64 36 L86 36 L86 58 Z" fill="url(#granvy-g-gradient)" />
     </svg>
   );
 }
