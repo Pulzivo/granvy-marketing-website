@@ -26,7 +26,7 @@ export function Nav() {
       >
         <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-4 md:px-10">
           <Logo />
-          <Button href="#book-demo" variant="primary" className="!px-5 !py-2.5 text-sm">
+          <Button href="/#book-demo" variant="primary" className="!px-5 !py-2.5 text-sm">
             {nav.cta}
           </Button>
         </div>

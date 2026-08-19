@@ -1,13 +1,27 @@
-// All site copy lives here. Everything below is strong placeholder copy.
-// Swap in real numbers, testimonials, and contact details before launch.
+// All site copy lives here. Every component under components/ imports from
+// this file, so the whole page's argument can be read (and edited) top to
+// bottom right here.
+//
 // Positioning: Granvy is the front-desk operating system for owner-operated
-// service businesses. Voice is one door into the system, not the whole
-// product: booking, deposits/payments, records/forms, and follow-ups all
-// carry equal weight. Tone: confident, operator-to-operator, no hype.
+// service businesses. The owner is usually the one doing the work, so nobody
+// is answering the phone, chasing deposits, or sending follow-ups. Granvy is
+// the front desk they never hired. Voice is one door into the system, not the
+// whole product: booking, deposits/payments, records/forms, and follow-ups
+// all carry equal weight.
+//
+// Tone: operator to operator. Concrete nouns, no hype-speak, no filler.
+// Every number on this page is either a product fact (22 modules, 15-minute
+// setup, 24/7 answering) or clearly part of an illustrative UI mockup.
+//
+// TODO: real customer proof (named clients, quotes, before/after numbers)
+// would be the single biggest upgrade to this page. Mo/Reza have real
+// customers; publishing names or quotes needs their explicit sign-off, so
+// nothing is invented here in the meantime.
 
 export const brand = {
   name: "Granvy",
-  tagline: "Automate tasks. Save time. Grow smarter.",
+  tagline:
+    "The front-desk operating system for owner-operated service businesses.",
   legalName: "Granvy",
   domain: "granvy.com",
   contactEmail: "reza@granvy.com",
@@ -16,30 +30,33 @@ export const brand = {
 
 export const nav = {
   links: [
-    { label: "Platform", href: "#platform" },
-    { label: "How it works", href: "#how-it-works" },
-    { label: "Who it's for", href: "#who-its-for" },
+    { label: "Platform", href: "/#platform" },
+    { label: "How it works", href: "/#how-it-works" },
+    { label: "Who it's for", href: "/#who-its-for" },
   ],
   cta: "Book a demo",
 };
 
 export const hero = {
   eyebrow: "The front-desk operating system",
-  headlineLine1: "Your front desk,",
-  headlineAccent: "on autopilot",
-  headlinePrefix: "finally",
-  subtitle: "Calls answered, jobs booked, payments taken, clients followed up.",
-  subtitleLine2: "The whole front desk runs itself while you do the work.",
+  headlineLine1: "The front desk you",
+  headlinePrefix: "don't",
+  headlineAccent: "have to hire",
+  subtitle:
+    "Granvy picks up your calls, books the appointment, takes the deposit, and sends the intake form.",
+  subtitleLine2: "You hear about it after it's done.",
   primaryCta: "Book a demo",
   secondaryCta: "See how it works",
-  trust: "Built for owner-operated service businesses",
+  trust: "Built for owner-operated salons, clinics, studios, and trades",
   stats: [
-    { value: "24/7", label: "Answered" },
-    { value: "3x", label: "Fewer no-shows" },
+    { value: "24/7", label: "Calls answered" },
+    { value: "22", label: "Modules, one login" },
     { value: "15 min", label: "To set up" },
   ],
 };
 
+// Illustrative product mockup. These numbers show what the dashboard looks
+// like in use; they are not customer results and must not be presented as such.
 export const heroDashboard = {
   title: "Front Desk",
   status: "This week",
@@ -78,13 +95,13 @@ export const heroDashboard = {
 };
 
 export const voiceModule = {
-  eyebrow: "Answers every call",
-  heading: "It picks up, books the job, and moves on",
-  body: "No voicemail, no missed leads. Granvy answers the phone, checks the calendar, and books the appointment while you keep working.",
+  eyebrow: "The phone",
+  heading: "Your phone rings. Granvy answers.",
+  body: "It checks your real calendar, offers real openings, and books the appointment while you finish the client in front of you. No voicemail, no callback list, no lead calling the next name on Google while they wait for you to phone back.",
   features: [
-    "Every call answered and booked, 24/7",
-    "Deposits taken to hold the slot",
-    "Real emergencies escalated straight to you",
+    "Answers around the clock, including mid-appointment and after close",
+    "Takes a card deposit before the slot is confirmed",
+    "Puts genuine emergencies straight through to you",
   ],
   transcript: [
     { from: "caller", text: "Hi, do you have anything open this Thursday afternoon?" },
@@ -112,22 +129,22 @@ export const platformPillars = [
   {
     name: "Never miss a customer",
     description:
-      "Every call, chat, and booking answered and scheduled, day or night.",
+      "Phone, website chat, and online booking, answered and scheduled at 2 PM or 2 AM.",
   },
   {
     name: "Get paid without chasing",
     description:
-      "Deposits, checkout, memberships, and invoices, all collected automatically.",
+      "Deposits before the visit, checkout after it, memberships and invoices in between.",
   },
   {
     name: "Keep clients coming back",
     description:
-      "Records, forms, reminders, and follow-ups that bring people back on their own.",
+      "Reminders, aftercare follow-ups, and campaigns that rebook regulars before they drift.",
   },
   {
-    name: "Runs itself, in full view",
+    name: "See everything it did",
     description:
-      "Automations do the busywork; clear reporting shows what drives revenue.",
+      "Every call, booking, and dollar in one log, with reporting that shows what fills the calendar.",
   },
 ];
 
@@ -135,14 +152,15 @@ export const platform = {
   eyebrow: "The platform",
   heading: "One system runs the whole front desk",
   subheading:
-    "Not eleven tools bolted together. Four things your front desk does, on autopilot.",
+    "Phones, booking, payments, records, and follow-ups in one place, so nothing gets lost between apps.",
   groups: [
     {
       name: "Front doors",
       modules: [
         {
           name: "AI Voice Reception",
-          description: "Answers every call, books the job, escalates real emergencies to you.",
+          description:
+            "Answers every call, books the job, puts real emergencies through to you.",
         },
         {
           name: "Website Chat",
@@ -171,7 +189,7 @@ export const platform = {
         },
         {
           name: "Automatic Reminders",
-          description: "Cut no-shows before they happen.",
+          description: "Text and email reminders that cut no-shows.",
         },
       ],
     },
@@ -234,7 +252,7 @@ export const platform = {
         },
         {
           name: "Review Requests",
-          description: "Turn happy customers into 5-star reviews.",
+          description: "Ask for the review while the visit is still fresh.",
         },
       ],
     },
@@ -264,61 +282,61 @@ export const platform = {
 };
 
 export const howItWorks = {
-  eyebrow: "How It Works",
-  heading: "Up and Running Before Your Next Shift",
+  eyebrow: "How it works",
+  heading: "Live before your next shift",
   steps: [
     {
       number: "01",
-      title: "Connect your front desk",
+      title: "Point your number at Granvy",
       description:
-        "Give Granvy your business number (or get a new one), your calendar, and your service list. Takes about 15 minutes.",
+        "Forward your business line (or take a new number), connect your calendar, and load your services and prices. About 15 minutes.",
     },
     {
       number: "02",
-      title: "Turn on what you need",
+      title: "Switch on what you need",
       description:
-        "Turn on what you need: booking, payments, deposits, forms, records, follow-ups, and more. No new software, no new login.",
+        "Start with call answering and booking. Add deposits, forms, memberships, and follow-ups whenever you're ready. One login for all of it.",
     },
     {
       number: "03",
-      title: "It runs your front desk",
+      title: "Get back to the work",
       description:
-        "Calls get answered, jobs get booked, deposits get taken, customers get followed up with, all automatically, 24/7.",
+        "Calls answered, jobs booked, deposits held, reminders sent, follow-ups delivered. You get a clear log of everything it did.",
     },
   ],
 };
 
 export const verticals = {
-  eyebrow: "Built for Owner-Operators",
-  heading: "Granvy Runs the Front Desk For",
+  eyebrow: "Who it's for",
+  heading: "For owners whose hands are literally full",
   industries: [
     {
       name: "Medical Aesthetics Clinics",
       description:
-        "Book consultations, send intake and consent forms before the visit, take deposits, keep charts and photos organized, and run memberships, all without a full-time front desk.",
+        "Consults booked, consent and intake signed before the patient arrives, deposits holding every slot, charts and photos where you can find them. No coordinator required.",
     },
     {
       name: "Escape Rooms & Experiences",
       description:
-        "Take bookings around the clock, answer group-size questions instantly, and fill every time slot.",
+        "Group-size questions answered at 11 PM, weekend slots kept full, and a deposit on file so the party of eight actually shows up.",
     },
     {
       name: "Electrical & Trades",
       description:
-        "Capture the call while you're mid-job, quote fast, and never lose a lead to voicemail again.",
+        "You're in a panel with both hands busy. Granvy takes the call, gets the address, and books the estimate before the customer tries the next name on Google.",
     },
     {
       name: "Salons & Studios",
       description:
-        "Fill the chair, manage no-shows, and keep clients coming back with automatic follow-ups.",
+        "Deposits that make no-shows rare, a waitlist that refills cancellations, and follow-ups that rebook regulars before they drift.",
     },
   ],
 };
 
 export const ctaBand = {
-  heading: "Ready to Let Your Front Desk Run Itself?",
+  heading: "Watch it book a job on your actual calendar",
   subheading:
-    "Book a 20-minute demo and watch Granvy book, take payment, send forms, and follow up, using your actual services and calendar.",
+    "A 20-minute demo set up with your services, your hours, and your calendar. See it answer the call, take the deposit, and send the form.",
   primaryCta: "Book a demo",
 };
 
@@ -328,20 +346,20 @@ export const footer = {
     {
       heading: "Platform",
       links: [
-        { label: "All modules", href: "#platform" },
-        { label: "How it works", href: "#how-it-works" },
+        { label: "All modules", href: "/#platform" },
+        { label: "How it works", href: "/#how-it-works" },
       ],
     },
     {
       heading: "Company",
       links: [
-        { label: "Who it's for", href: "#who-its-for" },
+        { label: "Who it's for", href: "/#who-its-for" },
         { label: "Contact", href: `mailto:${brand.contactEmail}` },
       ],
     },
   ],
   legal: [
-    { label: "Privacy Policy", href: "#" },
-    { label: "Terms of Service", href: "#" },
+    { label: "Privacy Policy", href: "/privacy" },
+    { label: "Terms of Service", href: "/terms" },
   ],
 };
