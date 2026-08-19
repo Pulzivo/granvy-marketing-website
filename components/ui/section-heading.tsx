@@ -6,14 +6,17 @@ export function SectionHeading({
   heading,
   subheading,
   align = "left",
+  tone = "dark",
   className,
 }: {
   eyebrow?: string;
   heading: string;
   subheading?: string;
   align?: "left" | "center";
+  tone?: "dark" | "light";
   className?: string;
 }) {
+  const onPaper = tone === "dark";
   return (
     <div
       className={cn(
@@ -24,19 +27,34 @@ export function SectionHeading({
     >
       {eyebrow && (
         <Reveal>
-          <span className="text-xs font-medium uppercase tracking-[0.25em] text-mist/50">
+          <span
+            className={cn(
+              "text-xs font-semibold uppercase tracking-[0.22em]",
+              onPaper ? "text-pine" : "text-cream/60",
+            )}
+          >
             {eyebrow}
           </span>
         </Reveal>
       )}
       <Reveal delay={0.08}>
-        <h2 className="mt-3 text-3xl md:text-5xl font-medium tracking-[-0.02em] leading-[1.1] text-white">
+        <h2
+          className={cn(
+            "font-display mt-4 text-4xl leading-[1.05] md:text-5xl",
+            onPaper ? "text-ink" : "text-cream",
+          )}
+        >
           {heading}
         </h2>
       </Reveal>
       {subheading && (
         <Reveal delay={0.16}>
-          <p className="mt-4 text-base md:text-lg leading-relaxed text-muted">
+          <p
+            className={cn(
+              "mt-5 text-base leading-relaxed md:text-lg",
+              onPaper ? "text-ink-soft" : "text-cream/75",
+            )}
+          >
             {subheading}
           </p>
         </Reveal>

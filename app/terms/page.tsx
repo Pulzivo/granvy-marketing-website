@@ -58,7 +58,7 @@ export default function TermsPage() {
         <p>
           Your business data and your clients&apos; data remain yours. We
           process them to provide the service, as described in our{" "}
-          <a href="/privacy" className="text-white underline underline-offset-2">
+          <a href="/privacy" className="text-ink underline underline-offset-2">
             Privacy Policy
           </a>
           . If you leave Granvy, you can request an export of your records.
@@ -100,7 +100,7 @@ export default function TermsPage() {
           We will update these terms as the product and our legal review
           evolve, and change the date at the top when we do. Continued use
           after an update means you accept the new terms. Questions go to{" "}
-          <a href={`mailto:${brand.contactEmail}`} className="text-white underline underline-offset-2">
+          <a href={`mailto:${brand.contactEmail}`} className="text-ink underline underline-offset-2">
             {brand.contactEmail}
           </a>{" "}
           or {brand.contactPhone}.

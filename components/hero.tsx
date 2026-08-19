@@ -14,66 +14,64 @@ export function Hero() {
     target: sectionRef,
     offset: ["start start", "end start"],
   });
-  const productY = useTransform(scrollYProgress, [0, 1], [0, -60]);
+  const productY = useTransform(scrollYProgress, [0, 1], [0, -40]);
 
   return (
-    <section ref={sectionRef} id="top" className="grain relative overflow-hidden bg-black">
-      {/* Signature spectrum glow behind the headline + product */}
-      <div className="pointer-events-none absolute inset-x-0 -top-40 z-0 h-[900px] spectrum opacity-30 blur-[100px]" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-64 bg-gradient-to-t from-black to-transparent" />
-
-      <Container className="relative z-10 pb-20 pt-32 text-center md:pb-28 md:pt-40">
-        <motion.div
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mx-auto inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-1.5 text-xs font-medium text-mist/70"
-        >
-          <span className="h-1.5 w-1.5 rounded-full bg-green" />
-          {hero.eyebrow}
-        </motion.div>
-
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
-          className="mx-auto mt-7 max-w-4xl text-5xl font-semibold leading-[1.03] tracking-[-0.03em] text-white md:text-7xl"
-        >
-          {hero.headlineLine1} {hero.headlinePrefix}{" "}
-          <span className="gradient-text font-serif italic font-normal">
-            {hero.headlineAccent}
-          </span>
-          .
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-mist/70 md:text-lg"
-        >
-          {hero.subtitle} {hero.subtitleLine2}
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.32 }}
-          className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row"
-        >
-          <Button href="#book-demo" variant="primary" className="!px-8 !py-3.5">
-            {hero.primaryCta}
-          </Button>
-          <a
-            href="#how-it-works"
-            className="group inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-mist/80 transition-colors hover:text-white"
+    <section ref={sectionRef} id="top" className="relative overflow-hidden bg-paper">
+      <Container className="relative pb-16 pt-32 md:pb-24 md:pt-44">
+        {/* Left-aligned editorial headline block */}
+        <div className="max-w-3xl">
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="flex items-center gap-3"
           >
-            {hero.secondaryCta}
-            <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5" />
-          </a>
-        </motion.div>
+            <span className="h-px w-8 bg-pine" />
+            <span className="text-xs font-semibold uppercase tracking-[0.22em] text-pine">
+              {hero.eyebrow}
+            </span>
+          </motion.div>
 
-        {/* Framed product surface with depth and spectrum glow */}
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
+            className="font-display mt-6 text-5xl leading-[1.02] text-ink md:text-7xl"
+          >
+            {hero.headlineLine1} {hero.headlinePrefix}{" "}
+            <em className="text-pine">{hero.headlineAccent}</em>.
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="mt-6 max-w-xl text-base leading-relaxed text-ink-soft md:text-lg"
+          >
+            {hero.subtitle} {hero.subtitleLine2}
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.32 }}
+            className="mt-9 flex flex-wrap items-center gap-4"
+          >
+            <Button href="#book-demo" variant="primary" className="!px-8 !py-3.5">
+              {hero.primaryCta}
+            </Button>
+            <a
+              href="#how-it-works"
+              className="group inline-flex items-center gap-1.5 px-2 py-2 text-sm font-medium text-ink-soft transition-colors hover:text-ink"
+            >
+              {hero.secondaryCta}
+              <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5" />
+            </a>
+          </motion.div>
+        </div>
+
+        {/* Product frame: real software, real shadow, no glow */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -81,16 +79,18 @@ export function Hero() {
           style={{ y: productY }}
           className="relative mx-auto mt-16 max-w-5xl md:mt-20"
         >
-          <div className="pointer-events-none absolute -inset-x-10 -top-10 bottom-0 -z-10 spectrum opacity-40 blur-3xl" />
-          <div className="panel-product overflow-hidden p-2 text-left md:p-3">
-            <div className="flex items-center gap-1.5 px-3 py-2">
-              <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
-              <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
-              <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+          <div className="shadow-lift overflow-hidden rounded-2xl border border-line-strong bg-card text-left">
+            <div className="flex items-center gap-2 border-b border-line bg-paper-deep/60 px-4 py-2.5">
+              <span className="flex gap-1.5">
+                <span className="h-2.5 w-2.5 rounded-full bg-line-strong" />
+                <span className="h-2.5 w-2.5 rounded-full bg-line-strong" />
+                <span className="h-2.5 w-2.5 rounded-full bg-line-strong" />
+              </span>
+              <span className="mx-auto hidden rounded-md border border-line bg-card px-3 py-0.5 text-[11px] text-ink-faint sm:block">
+                app.granvy.com
+              </span>
             </div>
-            <div className="overflow-hidden rounded-xl">
-              <DashboardMockup />
-            </div>
+            <DashboardMockup />
           </div>
         </motion.div>
 
@@ -99,18 +99,20 @@ export function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.7 }}
-          className="mt-14 flex flex-col items-center gap-6"
+          className="mx-auto mt-14 max-w-5xl border-t border-line pt-8"
         >
-          <p className="text-xs font-medium uppercase tracking-[0.22em] text-mist/40">
-            {hero.trust}
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
-            {hero.stats.map((stat) => (
-              <div key={stat.label} className="flex items-baseline gap-2">
-                <span className="text-2xl font-semibold text-white">{stat.value}</span>
-                <span className="text-sm text-muted">{stat.label}</span>
-              </div>
-            ))}
+          <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+            <p className="max-w-xs text-xs font-semibold uppercase leading-relaxed tracking-[0.18em] text-ink-faint">
+              {hero.trust}
+            </p>
+            <div className="flex flex-wrap items-center gap-x-10 gap-y-4">
+              {hero.stats.map((stat) => (
+                <div key={stat.label} className="flex items-baseline gap-2">
+                  <span className="font-display text-3xl text-ink">{stat.value}</span>
+                  <span className="text-sm text-ink-soft">{stat.label}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </motion.div>
       </Container>

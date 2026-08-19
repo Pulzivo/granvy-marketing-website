@@ -7,31 +7,31 @@ const vignetteIcons = [ShieldCheck, FileText];
 
 export function VoiceModule() {
   return (
-    <section id="voice" className="relative overflow-hidden border-t border-white/[0.06] bg-black py-20 md:py-24">
+    <section id="voice" className="relative overflow-hidden border-y border-line bg-paper-deep py-20 md:py-28">
       <Container className="relative">
-        <div className="grid gap-12 md:grid-cols-2 md:items-center md:gap-14">
+        <div className="grid gap-12 md:grid-cols-2 md:items-center md:gap-16">
           <div>
-            <Reveal variant="left">
-              <span className="text-xs font-medium uppercase tracking-[0.25em] text-mist/50">
+            <Reveal>
+              <span className="text-xs font-semibold uppercase tracking-[0.22em] text-pine">
                 {voiceModule.eyebrow}
               </span>
             </Reveal>
-            <Reveal variant="left" delay={0.08}>
-              <h2 className="mt-4 text-3xl font-semibold leading-[1.1] tracking-[-0.02em] text-white md:text-4xl">
+            <Reveal delay={0.08}>
+              <h2 className="font-display mt-4 text-4xl leading-[1.05] text-ink md:text-5xl">
                 {voiceModule.heading}
               </h2>
             </Reveal>
-            <Reveal variant="left" delay={0.16}>
-              <p className="mt-6 text-base leading-relaxed text-muted md:text-lg">
+            <Reveal delay={0.16}>
+              <p className="mt-6 text-base leading-relaxed text-ink-soft md:text-lg">
                 {voiceModule.body}
               </p>
             </Reveal>
 
-            <ul className="mt-10 space-y-4">
+            <ul className="mt-9 space-y-4">
               {voiceModule.features.map((feature, i) => (
-                <Reveal key={feature} variant="left" delay={0.2 + i * 0.06}>
-                  <li className="flex items-start gap-3 text-white/85">
-                    <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-green" />
+                <Reveal key={feature} delay={0.2 + i * 0.06}>
+                  <li className="flex items-start gap-3 text-ink">
+                    <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-pine" />
                     <span>{feature}</span>
                   </li>
                 </Reveal>
@@ -39,20 +39,20 @@ export function VoiceModule() {
             </ul>
           </div>
 
-          <Reveal variant="right" delay={0.1} y={30}>
-            <div className="space-y-8">
+          <Reveal delay={0.1} y={30}>
+            <div className="space-y-7">
               <Transcript />
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                 {voiceModule.vignettes.map((vignette, i) => {
                   const Icon = vignetteIcons[i % vignetteIcons.length];
                   return (
-                    <div key={vignette.label} className="flex gap-3 pl-4 [border-left:2px_solid_rgba(255,255,255,0.12)]">
-                      <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/[0.06] text-mist">
+                    <div key={vignette.label} className="flex gap-3 border-l-2 border-pine/30 pl-4">
+                      <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-pine-tint text-pine">
                         <Icon size={15} />
                       </span>
                       <div>
-                        <p className="text-sm font-medium text-white">{vignette.label}</p>
-                        <p className="mt-1 text-xs leading-relaxed text-muted">{vignette.detail}</p>
+                        <p className="text-sm font-semibold text-ink">{vignette.label}</p>
+                        <p className="mt-1 text-xs leading-relaxed text-ink-soft">{vignette.detail}</p>
                       </div>
                     </div>
                   );
@@ -68,14 +68,13 @@ export function VoiceModule() {
 
 function Transcript() {
   return (
-    <div className="panel relative overflow-hidden p-5 md:p-6">
-      <div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-sky/10 blur-3xl" />
-      <div className="relative mb-5 flex items-center gap-2 border-b border-white/10 pb-4">
-        <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/[0.06] text-mist">
+    <div className="card relative overflow-hidden p-5 md:p-6">
+      <div className="relative mb-5 flex items-center gap-2.5 border-b border-line pb-4">
+        <span className="flex h-9 w-9 items-center justify-center rounded-full bg-pine-tint text-pine">
           <Phone size={15} />
         </span>
-        <span className="text-sm font-medium text-white">Incoming call</span>
-        <span className="ml-auto text-xs text-muted">00:12</span>
+        <span className="text-sm font-semibold text-ink">Incoming call</span>
+        <span className="ml-auto text-xs text-ink-faint">00:12</span>
       </div>
 
       <div className="relative space-y-3">
@@ -84,8 +83,8 @@ function Transcript() {
             <div
               className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${
                 line.from === "caller"
-                  ? "bg-white/5 text-white/80"
-                  : "ml-auto bg-gradient-to-br from-green/25 to-sky/20 text-white"
+                  ? "bg-paper-deep text-ink-soft"
+                  : "ml-auto bg-pine text-cream"
               }`}
             >
               {line.text}
@@ -95,7 +94,7 @@ function Transcript() {
       </div>
 
       <Reveal delay={0.15 * voiceModule.transcript.length} y={12}>
-        <div className="relative mt-5 flex items-center gap-2 rounded-lg border border-green/20 bg-green/5 px-3 py-2.5 text-sm font-medium text-green">
+        <div className="relative mt-5 flex items-center gap-2 rounded-lg border border-pine/25 bg-pine-tint px-3 py-2.5 text-sm font-semibold text-pine">
           <CheckCircle2 size={16} />
           Booked for Thursday, 4:00 PM
         </div>

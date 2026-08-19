@@ -5,7 +5,7 @@ import { Footer } from "./footer";
 import { Container } from "./ui/container";
 
 // Shared layout for the legal pages (/privacy, /terms): plain reading
-// surface, no marketing chrome, same dark palette as the rest of the site.
+// surface, no marketing chrome, same paper palette as the rest of the site.
 export function LegalShell({
   title,
   updated,
@@ -17,12 +17,12 @@ export function LegalShell({
 }) {
   return (
     <>
-      <header className="border-b border-white/5 bg-black">
+      <header className="border-b border-line bg-paper">
         <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-4 md:px-10">
           <Logo />
           <Link
             href="/"
-            className="inline-flex items-center gap-1.5 text-sm text-muted transition-colors hover:text-white"
+            className="inline-flex items-center gap-1.5 text-sm text-ink-soft transition-colors hover:text-ink"
           >
             <ArrowLeft size={15} />
             Back to granvy.com
@@ -30,17 +30,17 @@ export function LegalShell({
         </div>
       </header>
 
-      <main className="flex-1 bg-black py-16 md:py-20">
+      <main className="flex-1 bg-paper py-16 md:py-20">
         <Container className="max-w-3xl">
-          <p className="text-xs font-medium uppercase tracking-[0.22em] text-mist/40">
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-ink-faint">
             Last updated: {updated}
           </p>
-          <h1 className="mt-3 text-3xl font-semibold tracking-[-0.02em] text-white md:text-4xl">
+          <h1 className="font-display mt-3 text-4xl text-ink md:text-5xl">
             {title}
           </h1>
 
           <div
-            className="mt-6 rounded-xl border border-amber/25 bg-amber/[0.06] px-4 py-3 text-sm leading-relaxed text-mist/85"
+            className="mt-6 rounded-xl border border-brass/30 bg-brass/[0.07] px-4 py-3 text-sm leading-relaxed text-ink-soft"
             role="note"
           >
             This is a baseline draft, published so you can see how we plan to
@@ -67,8 +67,8 @@ export function LegalSection({
 }) {
   return (
     <section className="mt-10 first:mt-0">
-      <h2 className="text-xl font-semibold text-white">{heading}</h2>
-      <div className="mt-3 space-y-4 text-[15px] leading-relaxed text-mist/75">
+      <h2 className="text-xl font-semibold text-ink">{heading}</h2>
+      <div className="mt-3 space-y-4 text-[15px] leading-relaxed text-ink-soft">
         {children}
       </div>
     </section>

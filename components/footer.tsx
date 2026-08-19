@@ -4,19 +4,19 @@ import { footer, brand } from "@/lib/content";
 
 export function Footer() {
   return (
-    <footer className="border-t border-white/5 bg-black py-16">
+    <footer className="bg-pine-ink py-16 text-cream">
       <Container>
         <div className="grid grid-cols-1 gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
-            <Logo />
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted">{footer.tagline}</p>
-            <div className="mt-6 space-y-1 text-sm text-muted">
-              <a href={`mailto:${brand.contactEmail}`} className="block hover:text-white">
+            <Logo tone="light" />
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-cream/60">{footer.tagline}</p>
+            <div className="mt-6 space-y-1 text-sm text-cream/60">
+              <a href={`mailto:${brand.contactEmail}`} className="block transition-colors hover:text-cream">
                 {brand.contactEmail}
               </a>
               <a
                 href={`tel:${brand.contactPhone.replace(/[^\d+]/g, "")}`}
-                className="block hover:text-white"
+                className="block transition-colors hover:text-cream"
               >
                 {brand.contactPhone}
               </a>
@@ -25,11 +25,11 @@ export function Footer() {
 
           {footer.columns.map((column) => (
             <div key={column.heading}>
-              <h3 className="text-sm font-semibold text-white">{column.heading}</h3>
+              <h3 className="text-sm font-semibold text-cream">{column.heading}</h3>
               <ul className="mt-4 space-y-3">
                 {column.links.map((link) => (
                   <li key={link.label}>
-                    <a href={link.href} className="text-sm text-muted hover:text-white">
+                    <a href={link.href} className="text-sm text-cream/60 transition-colors hover:text-cream">
                       {link.label}
                     </a>
                   </li>
@@ -39,13 +39,13 @@ export function Footer() {
           ))}
         </div>
 
-        <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/5 pt-8 sm:flex-row">
-          <p className="text-xs text-muted">
+        <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-cream/10 pt-8 sm:flex-row">
+          <p className="text-xs text-cream/50">
             &copy; {new Date().getFullYear()} {brand.legalName}. All rights reserved.
           </p>
           <div className="flex gap-6">
             {footer.legal.map((link) => (
-              <a key={link.label} href={link.href} className="text-xs text-muted hover:text-white">
+              <a key={link.label} href={link.href} className="text-xs text-cream/50 transition-colors hover:text-cream">
                 {link.label}
               </a>
             ))}

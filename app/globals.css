@@ -1,41 +1,64 @@
 @import "tailwindcss";
 
+/* ---------------------------------------------------------------------------
+   Granvy design tokens: warm paper, ink, and deep pine.
+
+   The palette is deliberately not "dark SaaS": a warm ivory ground, warm
+   near-black ink, and one deep green pulled from the logo mark. Dark surfaces
+   (CTA band, footer) are pine-ink, used as bookends rather than the default.
+--------------------------------------------------------------------------- */
+
 :root {
-  --background: #000000;
-  --foreground: #ffffff;
+  --background: #faf7f0;
+  --foreground: #241f17;
 
-  --color-black: #000000;
-  --color-ink: #0f172a;
-  --color-slate: #334155;
-  --color-muted: #94a3b8;
-  --color-mist: #e2e8f0;
-  --color-green: #10b981;
-  --color-green-light: #34d399;
-  --color-green-dim: #0f2e26;
+  /* Grounds */
+  --color-paper: #faf7f0;
+  --color-paper-deep: #f2ecdf;
+  --color-card: #fffdf8;
 
-  /* Editorial multi-hue accents (Stripe-style spectrum) */
-  --color-sky: #38bdf8;
-  --color-indigo: #6366f1;
-  --color-violet: #a855f7;
-  --color-amber: #fbbf24;
+  /* Ink */
+  --color-ink: #241f17;
+  --color-ink-soft: #5d5649;
+  --color-ink-faint: #94897a;
+
+  /* Hairlines */
+  --color-line: #e7e0d1;
+  --color-line-strong: #d8cfba;
+
+  /* Pine: the single brand accent */
+  --color-pine: #1d5b43;
+  --color-pine-hover: #174a36;
+  --color-pine-deep: #14352a;
+  --color-pine-ink: #0e241c;
+  --color-pine-tint: #e4eee6;
+
+  /* Text on dark pine surfaces */
+  --color-cream: #f6f1e6;
+
+  /* Small warm accent (ratings, notes) */
+  --color-brass: #a87b2f;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
-  --color-black: var(--color-black);
+  --color-paper: var(--color-paper);
+  --color-paper-deep: var(--color-paper-deep);
+  --color-card: var(--color-card);
   --color-ink: var(--color-ink);
-  --color-slate: var(--color-slate);
-  --color-muted: var(--color-muted);
-  --color-mist: var(--color-mist);
-  --color-green: var(--color-green);
-  --color-green-light: var(--color-green-light);
-  --color-green-dim: var(--color-green-dim);
-  --color-sky: var(--color-sky);
-  --color-indigo: var(--color-indigo);
-  --color-violet: var(--color-violet);
-  --color-amber: var(--color-amber);
+  --color-ink-soft: var(--color-ink-soft);
+  --color-ink-faint: var(--color-ink-faint);
+  --color-line: var(--color-line);
+  --color-line-strong: var(--color-line-strong);
+  --color-pine: var(--color-pine);
+  --color-pine-hover: var(--color-pine-hover);
+  --color-pine-deep: var(--color-pine-deep);
+  --color-pine-ink: var(--color-pine-ink);
+  --color-pine-tint: var(--color-pine-tint);
+  --color-cream: var(--color-cream);
+  --color-brass: var(--color-brass);
 
   --font-sans: var(--font-poppins);
   --font-serif: var(--font-instrument-serif);
@@ -56,58 +79,44 @@ body {
 }
 
 ::selection {
-  background: var(--color-green);
-  color: var(--color-black);
+  background: var(--color-pine);
+  color: var(--color-cream);
 }
 
-/* Liquid glass surface used for nav pill, tag pills, cards */
-.liquid-glass {
-  background: rgba(255, 255, 255, 0.02);
-  background-blend-mode: luminosity;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: none;
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
-  position: relative;
-  overflow: hidden;
+/* Display serif for headlines */
+.font-display {
+  font-family: var(--font-serif), ui-serif, Georgia, serif;
+  letter-spacing: -0.01em;
+  font-weight: 400;
 }
 
-.liquid-glass::before {
+/* Card on paper: hairline plus a soft, warm, real shadow (no glass, no glow) */
+.card {
+  background: var(--color-card);
+  border: 1px solid var(--color-line);
+  border-radius: 16px;
+  box-shadow:
+    0 1px 2px rgba(36, 31, 23, 0.04),
+    0 16px 40px -24px rgba(36, 31, 23, 0.18);
+}
+
+/* Heavier lift for the hero product frame */
+.shadow-lift {
+  box-shadow:
+    0 1px 2px rgba(36, 31, 23, 0.06),
+    0 24px 48px -20px rgba(36, 31, 23, 0.25),
+    0 48px 96px -32px rgba(36, 31, 23, 0.18);
+}
+
+/* Fine film grain, kept for the dark pine surfaces only */
+.grain::after {
   content: "";
   position: absolute;
   inset: 0;
-  border-radius: inherit;
-  padding: 1.4px;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.35) 0%,
-    rgba(255, 255, 255, 0.12) 20%,
-    rgba(255, 255, 255, 0) 40%,
-    rgba(255, 255, 255, 0) 60%,
-    rgba(16, 185, 129, 0.25) 80%,
-    rgba(16, 185, 129, 0.45) 100%
-  );
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
   pointer-events: none;
-}
-
-.text-gradient-green {
-  background: linear-gradient(120deg, var(--color-green-light), var(--color-green) 60%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-/* Subtle grid texture used behind sections */
-.bg-grid {
-  background-image:
-    linear-gradient(rgba(148, 163, 184, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
-  background-size: 64px 64px;
+  opacity: 0.35;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 @keyframes pulse-dot {
@@ -117,166 +126,6 @@ body {
   }
   50% {
     opacity: 0.4;
-  }
-}
-
-/* ---------------------------------------------------------------------------
-   Editorial / Stripe-style styling
-   A layered multi-hue spectrum (green → sky → indigo → violet) used as the
-   signature accent, plus grain, panels, and gradient text. Heavy visuals live
-   in CSS so they stay off the React render path.
---------------------------------------------------------------------------- */
-
-/* Signature spectrum used for hero glow and the CTA band */
-.spectrum {
-  background:
-    radial-gradient(50% 60% at 15% 20%, rgba(16, 185, 129, 0.55), transparent 60%),
-    radial-gradient(45% 55% at 55% 15%, rgba(56, 189, 248, 0.45), transparent 62%),
-    radial-gradient(55% 65% at 85% 35%, rgba(99, 102, 241, 0.5), transparent 62%),
-    radial-gradient(50% 60% at 70% 90%, rgba(168, 85, 247, 0.4), transparent 62%),
-    radial-gradient(45% 55% at 20% 85%, rgba(251, 191, 36, 0.28), transparent 60%);
-  background-size: 200% 200%;
-  animation: spectrum-drift 24s ease-in-out infinite alternate;
-}
-
-@keyframes spectrum-drift {
-  0% {
-    background-position: 0% 50%;
-  }
-  100% {
-    background-position: 100% 50%;
-  }
-}
-
-/* Soft hero aurora: a dim wash of the spectrum bleeding down from the top */
-.aurora {
-  position: absolute;
-  inset: -25% -10% auto -10%;
-  height: 80%;
-  pointer-events: none;
-  filter: blur(90px);
-  opacity: 0.4;
-  background:
-    radial-gradient(40% 60% at 25% 25%, rgba(16, 185, 129, 0.35), transparent 65%),
-    radial-gradient(45% 60% at 60% 15%, rgba(56, 189, 248, 0.3), transparent 65%),
-    radial-gradient(45% 65% at 82% 30%, rgba(99, 102, 241, 0.35), transparent 65%);
-  background-size: 180% 180%;
-  animation: spectrum-drift 28s ease-in-out infinite alternate;
-}
-
-.aurora-soft {
-  opacity: 0.2;
-  filter: blur(120px);
-  animation-duration: 36s;
-}
-
-/* Fine film grain for texture over dark surfaces */
-.grain::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.5;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
-/* Multi-hue text gradient for headline accents */
-.gradient-text {
-  background: linear-gradient(100deg, #34d399 0%, #38bdf8 38%, #818cf8 68%, #c084fc 100%);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: text-shimmer 9s linear infinite;
-}
-
-/* Kept as an alias so existing accent markup still renders */
-.text-aurora {
-  background: linear-gradient(100deg, #ffffff 0%, #a7f3d0 45%, #7dd3fc 75%, #ffffff 100%);
-  background-size: 220% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: text-shimmer 10s linear infinite;
-}
-
-@keyframes text-shimmer {
-  to {
-    background-position: 200% center;
-  }
-}
-
-/* Translucent editorial surface with soft depth */
-.panel {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 24px 60px -30px rgba(0, 0, 0, 0.8);
-}
-
-/* Framed product surface with a gradient hairline border */
-.panel-product {
-  position: relative;
-  border-radius: 20px;
-  background: linear-gradient(180deg, rgba(20, 24, 33, 0.9), rgba(8, 10, 14, 0.95));
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.08),
-    0 40px 120px -30px rgba(0, 0, 0, 0.9),
-    0 0 80px -20px rgba(56, 189, 248, 0.25);
-}
-
-.gradient-border {
-  position: relative;
-}
-.gradient-border::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(140deg, rgba(52, 211, 153, 0.6), rgba(56, 189, 248, 0.35), rgba(99, 102, 241, 0.5));
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-}
-
-.text-glow {
-  text-shadow: 0 0 45px rgba(255, 255, 255, 0.16);
-}
-
-@keyframes spin-slow {
-  to {
-    transform: rotate(360deg);
-  }
-}
-.animate-spin-slow {
-  animation: spin-slow 14s linear infinite;
-}
-
-/* Thin gradient divider between sections */
-.section-divider {
-  height: 1px;
-  border: 0;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(56, 189, 248, 0.3),
-    rgba(99, 102, 241, 0.3),
-    transparent
-  );
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .spectrum,
-  .aurora,
-  .text-aurora,
-  .gradient-text,
-  .animate-spin-slow {
-    animation: none !important;
   }
 }
 

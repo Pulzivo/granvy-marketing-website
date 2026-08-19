@@ -91,7 +91,7 @@ export default function RootLayout({
       lang="en"
       className={`${poppins.variable} ${instrumentSerif.variable} h-full antialiased scroll-smooth`}
     >
-      <body className="min-h-full flex flex-col bg-ink text-white font-sans">
+      <body className="min-h-full flex flex-col bg-paper text-ink font-sans">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

@@ -31,33 +31,33 @@ export default function PrivacyPage() {
         <p>Depending on how you interact with Granvy, this can include:</p>
         <ul className="list-disc space-y-2 pl-5">
           <li>
-            <strong className="text-white">Contact and booking details.</strong>{" "}
+            <strong className="text-ink">Contact and booking details.</strong>{" "}
             Name, phone number, email address, and appointment details
             (service, date, time, notes) when you book with a business that
             uses Granvy or when you contact us.
           </li>
           <li>
-            <strong className="text-white">Call data.</strong> When a business
+            <strong className="text-ink">Call data.</strong> When a business
             has voice reception or call recording enabled, calls handled by
             Granvy may be recorded and transcribed so the business has a
             record of what was discussed and booked.
           </li>
           <li>
-            <strong className="text-white">Payment information.</strong>{" "}
+            <strong className="text-ink">Payment information.</strong>{" "}
             Deposits, invoices, and checkout payments are processed by a
             third-party payment processor. Granvy does not store full card
             numbers; we keep records of the transactions themselves (amount,
             date, status).
           </li>
           <li>
-            <strong className="text-white">Intake, consent, and medical
+            <strong className="text-ink">Intake, consent, and medical
             form data.</strong> Businesses such as medical aesthetics clinics
             use Granvy to send and store intake forms, consent forms,
             treatment notes, and photos. This information is collected on
             behalf of, and controlled by, that business.
           </li>
           <li>
-            <strong className="text-white">Basic website data.</strong>{" "}
+            <strong className="text-ink">Basic website data.</strong>{" "}
             Standard technical information generated when you visit this
             site, such as pages viewed and browser type.
           </li>
@@ -90,7 +90,7 @@ export default function PrivacyPage() {
           data; Granvy processes it on their behalf. Requests to access,
           correct, or delete that information can go to the business directly
           or to us at{" "}
-          <a href={`mailto:${brand.contactEmail}`} className="text-white underline underline-offset-2">
+          <a href={`mailto:${brand.contactEmail}`} className="text-ink underline underline-offset-2">
             {brand.contactEmail}
           </a>
           , and we will help route them.
@@ -121,7 +121,7 @@ export default function PrivacyPage() {
         <p>
           We will update this policy as the product and our legal review
           evolve, and change the date at the top when we do. Questions go to{" "}
-          <a href={`mailto:${brand.contactEmail}`} className="text-white underline underline-offset-2">
+          <a href={`mailto:${brand.contactEmail}`} className="text-ink underline underline-offset-2">
             {brand.contactEmail}
           </a>{" "}
           or {brand.contactPhone}.
