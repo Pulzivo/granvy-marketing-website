@@ -29,9 +29,9 @@ export const metadata: Metadata = {
   description: siteDescription,
   metadataBase: new URL("https://granvy.com"),
   icons: {
-    icon: "/favicon.svg",
-    shortcut: "/favicon.svg",
-    apple: "/icon.svg",
+    icon: "/favicon.svg?v=2",
+    shortcut: "/favicon.svg?v=2",
+    apple: "/icon.svg?v=2",
   },
   openGraph: {
     title: siteTitle,
