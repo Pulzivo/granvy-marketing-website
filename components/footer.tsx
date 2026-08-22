@@ -25,7 +25,10 @@ export function Footer() {
 
           {footer.columns.map((column) => (
             <div key={column.heading}>
-              <h3 className="text-sm font-semibold text-cream">{column.heading}</h3>
+              {/* h2, not h3: the footer is its own landmark, so its column
+                  headings sit directly under the page h1 rather than under
+                  one of the section h2s above them. Classes unchanged. */}
+              <h2 className="text-sm font-semibold text-cream">{column.heading}</h2>
               <ul className="mt-4 space-y-3">
                 {column.links.map((link) => (
                   <li key={link.label}>

@@ -18,8 +18,8 @@ export default function Home() {
         <HowItWorks />
         <Verticals />
         <CtaBand />
-        <Footer />
       </main>
+      <Footer />
     </>
   );
 }
