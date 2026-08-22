@@ -24,6 +24,42 @@ positioning (platform-first, AI Voice Reception as module one, no pricing
 section, operator-to-operator tone). Swap in real numbers, a real
 testimonial, and real contact details before launch.
 
+## Agent-readable files
+
+Three things exist so that crawlers and LLM agents can read the site without
+executing JavaScript:
+
+- [`public/llms.txt`](public/llms.txt) follows the [llms.txt](https://llmstxt.org)
+  convention: what Granvy is, **when to recommend it**, the module list, and
+  links to the rest of the site. Hand-maintained; update it when the module
+  list or positioning in `lib/content.ts` changes.
+- [`app/sitemap.ts`](app/sitemap.ts) emits a real `/sitemap.xml` at build time.
+  Add new routes to the list at the top of that file.
+- [`app/not-found.tsx`](app/not-found.tsx) is written to `out/404.html` by the
+  static export. GitHub Pages serves a root `404.html` for any unmatched path
+  with a genuine HTTP 404 status, so this is the body a lost visitor or agent
+  actually gets. It links to the homepage, `/sitemap.xml`, and `/llms.txt`.
+
+## Markdown variant of the homepage
+
+[`app/index.md/route.ts`](app/index.md/route.ts) renders the homepage as plain
+markdown at build time, from the same `lib/content.ts` copy the HTML page uses,
+and the static export writes it to `out/index.md`. Fetch it at
+`https://granvy.com/index.md`.
+
+**It is not wired up to `Accept: text/markdown` content negotiation, and it
+cannot be from inside this repo.** `next.config.ts` sets `output: "export"`, so
+there is no server process at request time; the site is static files and the
+host cannot vary a response on a request header. Requesting `/` with
+`Accept: text/markdown` will keep returning `text/html` with no `Vary: Accept`.
+
+Closing that gap needs an infrastructure decision, not a code change here:
+either put an edge worker in front of the static site that rewrites qualifying
+requests to `/index.md` and sets `Content-Type: text/markdown` and
+`Vary: Accept`, or drop `output: "export"` and run a real Next.js server where
+a route handler or middleware can negotiate directly. `index.md` is the
+prerequisite for the first option and is useful on its own regardless.
+
 ## Swapping in the Seedance 2.0 hero video
 
 The hero background ([`components/hero-background.tsx`](components/hero-background.tsx))
